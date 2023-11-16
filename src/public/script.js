@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const form = document.querySelector("form"),
         nextBtn = document.querySelector(".nextBtn"),
-        addressBtn = document.querySelector(".submitBtn"),
+        submitBtn = document.querySelector(".submitBtn"),
         backBtn = document.querySelector(".backBtn");
 
     let registrationCompleted = false;
@@ -10,20 +10,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
         return Array.from(inputs).every(input => input.value.trim() !== "");
     }
 
-    function submitAddress(addressData) {
-        fetch('/api/address', {
+    function submitAllData(registrationData, addressData) {
+        fetch('http://localhost:3000/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(addressData),
+            body: JSON.stringify(registrationData),
         })
             .then(response => response.json())
             .then(data => {
-                alert('Address saved successfully!');
+                return fetch('/api/address', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(addressData),
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Registration and address saved successfully!');
+                // Here you can redirect to another page or reset the form
             })
             .catch(error => {
-                console.error('Failed to save address:', error);
+                console.error('Failed to save data:', error);
+                alert("Failed to save data. Please try again.");
             });
     }
 
@@ -37,34 +49,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 return;
             }
 
-            const registrationData = {};
-            registrationInputs.forEach(input => {
-                registrationData[input.name] = input.value;
-            });
-
-            fetch('http://localhost:3000/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(registrationData),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    alert("Registration successful!");
-                    registrationCompleted = true;
-                    form.classList.add('secActive');
-                })
-                .catch(error => {
-                    console.error('Registration failed:', error);
-                    alert("Failed to register. Please try again.");
-                });
-        }else{
+            registrationCompleted = true;
             form.classList.add('secActive');
         }
     });
 
-    addressBtn.addEventListener("click", (event) => {
+    submitBtn.addEventListener("click", (event) => {
         event.preventDefault();
 
         if (!registrationCompleted) {
@@ -72,24 +62,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
             return;
         }
 
+        const registrationInputs = document.querySelectorAll(".first input");
         const addressInputs = document.querySelectorAll(".second input");
 
-        if (!checkInputsFilled(addressInputs)) {
-            alert("Please fill out all address fields.");
+        if (!checkInputsFilled(registrationInputs) || !checkInputsFilled(addressInputs)) {
+            alert("Please fill out all fields.");
             return;
         }
+
+        const registrationData = {};
+        registrationInputs.forEach(input => {
+            registrationData[input.name] = input.value;
+        });
 
         const addressData = {};
         addressInputs.forEach(input => {
             addressData[input.name] = input.value;
         });
 
-        submitAddress(addressData);
+        submitAllData(registrationData, addressData);
     });
 
     backBtn.addEventListener("click", () => {
         if (registrationCompleted) {
             form.classList.remove('secActive');
+            registrationCompleted = false;
         } else {
             alert("Back button clicked on registration form.");
         }
