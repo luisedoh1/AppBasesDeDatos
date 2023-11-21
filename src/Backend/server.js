@@ -12,6 +12,14 @@ app.use(cors());
 app.use(express.static(join(__dirname, '../public')));
 app.use(express.json());
 
+app.get('/index', (req, res) => {
+    res.sendFile(join(__dirname, '../public/index.html'));
+});
+
+app.get('/register', (req, res) => {
+    res.sendFile(join(__dirname, '../public/register.html'));
+});
+
 const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=LAPTOP-LUISHQ;Database=Proyecto;Trusted_Connection=yes;`;
 
 const config = {

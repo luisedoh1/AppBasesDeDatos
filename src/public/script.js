@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function checkInputsFilled(inputs) {
         return Array.from(inputs).every(input => input.value.trim() !== "");
     }
-    //Hola
+
     function submitAllData(registrationData, addressData) {
         fetch('http://localhost:3000/api/register', {
             method: 'POST',

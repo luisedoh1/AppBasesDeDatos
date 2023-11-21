@@ -3,238 +3,42 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Menu</title>
 
     <link rel="stylesheet" href="style.css">
-
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
-    <title>Form para Registro de Clientes</title>
 </head>
 
 <body>
-<div class="container">
-    <header>Registro de Cliente</header>
-    <form>
-        <div class="form first">
-            <div class="details personal">
+    <div class="menu">
+        <header>Menu</header>
+        <form>
+            <div class="menu-buttons">
+                <button class="registerBtn" type="button">
+                    <i class="uil-user-plus"></i>
+                    <span class="btnText">Registrar</span>
+                </button>
 
-                <span class="tittle">Detalles Personales</span>
+                <button class="editBtn" type="button">
+                    <i class="uil-edit"></i>
+                    <span class="btnText">Editar</span>
+                </button>
 
-                <div class="fields">
-                    <div class="input-field">
-                        <label>Nombre Completo:</label>
-                        <input type="text" placeholder="Escriba su nombre" name="nombreCompleto" required>
-                    </div>
-                    <div class="input-field">
-                        <label>Fecha de Nacimiento:</label>
-                        <input type="date" name="fechaNacimiento" required>
-                    </div>
-                    <div class="input-field">
-                        <label>Email:</label>
-                        <input type="email" placeholder="Escriba su correo electronico" name="email" required>
-                    </div>
-                    <div class="input-field">
-                        <label>Numero de Celular</label>
-                        <input type="text" placeholder="Escriba su numero de celular" name="numeroCelular" required>
-                    </div>
-                    <div class="input-field">
-                        <label>Genero:</label>
-                        <select name="genero" id="generoDir">
-                            <option selected>Seleccione su genero</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
-                            <option value="O">Otro</option>
-                        </select>
-                    </div>
-                    <div class="input-field">
-                        <label>Ocupación:</label>
-                        <input type="text" placeholder="Escriba su ocupación" name="ocupacion" required>
-                    </div>
-                </div>
-            </div>
-
-            <div class="details ID">
-
-                <span class="tittle">Detalles Documento de Identidad</span>
-
-                <div class="fields">
-                    <div class="input-field">
-                        <label>Tipo Identificación:</label>
-                        <label for="tipoIdentificacion"></label><select name="tipoIdentificacion" id="tipoIdentificacion">
-                            <option selected>Seleccione el tipo</option>
-                            <option value="N">Cedula</option>
-                            <option value="D">DIMEX</option>
-                            <option value="P">Pasaporte</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Numero de Identificación:</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su numero de Identificación" name="identificacion" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Tipo de Persona:</label>
-                        <label for="tipoPersona"></label><select name="tipoPersona" id="tipoPersona">
-                            <option selected>Seleccione el tipo</option>
-                            <option value="F">Física</option>
-                            <option value="J">Jurídica</option>
-                            <option value="P">PYME</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Fecha de Emisión:</label>
-                        <label>
-                            <input type="date" placeholder="Escriba su fecha" name="issueDate" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Fecha de Expiración:</label>
-                        <label>
-                            <input type="date" placeholder="Escriba su fecha" name="fechaExpiracion">
-                        </label>
-                    </div>
-
-                </div>
-                <button class="nextBtn">
-                    <span class="btnText">Next</span>
-                    <i class="uil uil-navigator"></i>
+                <button class="showBtn"  type="button">
+                    <i class="uil-users-alt"></i>
+                    <span class="btnText">Mostrar</span>
+                </button>
+                
+                <button class="deleteBtn" type="button">
+                    <i class="deleteBtn uil-user-minus"></i>
+                    <span class="btnText">Eliminar</span>
                 </button>
             </div>
-        </div>
-
-        <div class="form second">
-            <div class="details address">
-
-                <span class="tittle">Detalles de Dirección</span>
-
-                <div class="fields">
-                    <div class="input-field">
-                        <label>Tipo direccion:</label>
-                        <label for="direccionTipo"></label><select name="direccionTipo" id="direccionTipo">
-                            <option selected>Seleccione el tipo</option>
-                            <option value="H">Hogar</option>
-                            <option value="T">Trabajo</option>
-                            <option value="O">Otro</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Fecha de Nacimiento:</label>
-                        <label>
-                            <input type="date" placeholder="Escriba su fecha" name="fechaNacimiento">
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Email:</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su correo electronico" name="email2" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Numero de Celular</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su numero de celular" name="numero2" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Genero:</label>
-                        <label for="generoDir3"></label><label for="generoDir3"></label><select name="Genero" id="generoDir3">
-                            <option selected>Seleccione su genero</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
-                            <option value="O">Otro</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Ocupación:</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su ocupación" name="ocupacion2" required>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="details ID">
-
-                <span class="tittle">Detalles Documento de Identidad</span>
-
-                <div class="fields">
-                    <div class="input-field">
-                        <label>Tipo Identificación:</label>
-                        <label for="tipoIdentificacionDir"></label><select name="tipoIdentificacionDir" id="tipoIdentificacionDir">
-                            <option selected>Seleccione el tipo</option>
-                            <option value="N">Cedula</option>
-                            <option value="D">DIMEX</option>
-                            <option value="P">Pasaporte</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Numero de Identificación:</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su numero de Identificación" name="identificacion" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Numero de Identificación:</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su numero de Identificación" name="identificacion" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Tipo de Persona:</label>
-                        <label for="tipoPersonaDir"></label><select name="tipoPersonaDir" id="tipoPersonaDir">
-                            <option selected>Seleccione el tipo</option>
-                            <option value="F">Física</option>
-                            <option value="J">Jurídica</option>
-                            <option value="P">PYME</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Fecha de Emisión:</label>
-                        <label>
-                            <input type="date" placeholder="Escriba su fecha" name="fechaEmision" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Fecha de Expiración:</label>
-                        <label>
-                            <input type="date" placeholder="Escriba su fecha" name="fechaExp">
-                        </label>
-                    </div>
-
-                </div>
-                <div class="buttons">
-                    <button class="backBtn" type="button">
-                        <i class="uil uil-navigator"></i>
-                        <span class="btnText">Back</span>
-                    </button>
-
-                    <button class="submitBtn" type="button">
-                        <span class="btnText">Submit</span>
-                        <i class="uil uil-navigator"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-<script src="script.js"></script>
+        </form>
+    </div>
+    <script src="script-menu.js"></script>
 </body>
 
 </html>
