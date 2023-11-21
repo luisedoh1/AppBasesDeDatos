@@ -11,7 +11,8 @@ body{
     display:flex;
     align-items: center;
     justify-content: center;
-    background-color: #1572A1;
+    background: #48b9bd;
+    background: linear-gradient(169deg, #48b9bd 14%, #38adb2 59%, #000000 100%);
 }
 .container{
     position: relative;
@@ -37,7 +38,7 @@ body{
     bottom: -6px;
     height: 3px;
     width: 65px;
-    background-color: #1572A1;
+    background-color: #42aaad;
 }
 
 .container form{
@@ -157,7 +158,7 @@ form.secActive .form.first{
     color: #fff;
     border-radius: 5px;
     margin: 25px 0;
-    background-color: #1572A1;
+    background-color: #42aaad;
     transition: all 0.3s linear;
     cursor: pointer;
     pointer-events: auto;
@@ -171,7 +172,7 @@ form.secActive .form.first{
 
 form button:hover,
 form .backBtn:hover{
-    background-color: #135677;
+    background-color: #358e91;
 }
 
 form button i,
@@ -195,6 +196,5 @@ form .buttons button, .backBtn{
 }
 
 .nextBtn {
-    border: 2px solid red; /* Just for testing */
-    background-color: yellow; /* Just for testing */
+    background-color: #42aaad; 
 }
