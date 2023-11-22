@@ -23,9 +23,9 @@
     <table class="table-style">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Nombre</th>
             <th>Email</th>
-            <th>Actions</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -40,11 +40,11 @@
                     <td><%= client.Email %></td>
                     <td>
                         <button class="deleteBtn" data-client-id="<%= client.PersonID %>" type="button">
-                            <i class="deleteBtn uil-user-minus"></i>
+                            <i class="uil-user-minus"></i>
                             <span class="btnText">Eliminar</span>
                         </button>
                         <button class="showBtn" data-client-id="<%= client.PersonID %>" type="button">
-                            <i class="uil-users-alt"></i>
+                            <i class="uil-eye"></i>
                             <span class="btnText">Mostrar</span>
                         </button>
                         <button class="editBtn" data-client-id="<%= client.PersonID %>" type="button">

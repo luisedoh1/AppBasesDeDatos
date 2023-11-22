@@ -347,14 +347,27 @@ label input {
   display: inline-block;
 }
 
-/* Table styles with rounded corners */
+/* Default table styles */
 .table-style {
-  background-color: #fff; /* Match this with your menu background color */
+  background-color: #fff;
   border-collapse: collapse;
   width: 100%;
-  border-radius: 8px; /* Rounded corners */
-  overflow: hidden; /* Ensures the rounded corners are visible */
-  margin: 30px 30px 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0; /* Remove margin to make it flush with the container */
+  padding: 0; /* Remove padding to make it flush with the container */
+}
+
+/* Media query for smaller screens (adjust the breakpoint as needed) */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px; /* Add padding to the container to create space */
+    overflow-x: auto; /* Add horizontal scroll for small screens */
+  }
+  .table-style {
+    width: 100%;
+    font-size: 12px;
+  }
 }
 
 .table-style th, .table-style td {
@@ -445,5 +458,5 @@ label input {
 
 .container {
   width: calc(100% - 20px); /* This calculation reduces the total width by the left and right margins */
-  margin: 100px 30px 30px 30px; /* Top, right, bottom, and left margins */
+  margin: auto; /* Top, right, bottom, and left margins */
 }
