@@ -135,12 +135,15 @@ sql.connect(config).then(connectionPool => {
         try {
             const pool = await sql.connect(config);
             const result = await pool.request().query('SELECT * FROM Person');
-            res.render('index', { clients: result.recordset });
+            const clients = result.recordset;
+            // Pass an additional variable to indicate if the clients array is empty
+            res.render('index', { clients, noClients: clients.length === 0 });
         } catch (error) {
             console.error('Failed to fetch clients:', error);
             res.status(500).send('An error occurred while fetching clients.');
         }
     });
+
 
 // Fetch clients from the database
     async function fetchClientsFromDatabase() {

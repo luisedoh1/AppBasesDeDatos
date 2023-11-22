@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
 
         submitAllData(registrationData, addressData);
+        window.location.href = '/';
     });
 
 

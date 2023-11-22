@@ -48,26 +48,32 @@
         </tr>
         </thead>
         <tbody>
-        <% clients.forEach(function(client) { %>
+        <% if (noClients) { %>
             <tr>
-                <td><%= client.NombreCompleto %></td>
-                <td><%= client.Email %></td>
-                <td>
-                    <button class="deleteBtn" data-client-id="<%= client.PersonID %>" type="button">
-                        <i class="uil-user-minus"></i>
-                        <span class="btnText">Eliminar</span>
-                    </button>
-                    <button class="showBtn" data-client-id="<%= client.PersonID %>" type="button">
-                        <i class="uil-users-alt"></i>
-                        <span class="btnText">Mostrar</span>
-                    </button>
-                    <button class="editBtn" data-client-id="<%= client.PersonID %>" type="button">
-                        <i class="uil-edit"></i>
-                        <span class="btnText">Editar</span>
-                    </button>
-                </td>
+                <td colspan="3">No clients found.</td>
             </tr>
-        <% }); %>
+        <% } else { %>
+            <% clients.forEach(function(client) { %>
+                <tr>
+                    <td><%= client.NombreCompleto %></td>
+                    <td><%= client.Email %></td>
+                    <td>
+                        <button class="deleteBtn" data-client-id="<%= client.PersonID %>" type="button">
+                            <i class="uil-user-minus"></i>
+                            <span class="btnText">Eliminar</span>
+                        </button>
+                        <button class="showBtn" data-client-id="<%= client.PersonID %>" type="button">
+                            <i class="uil-users-alt"></i>
+                            <span class="btnText">Mostrar</span>
+                        </button>
+                        <button class="editBtn" data-client-id="<%= client.PersonID %>" type="button">
+                            <i class="uil-edit"></i>
+                            <span class="btnText">Editar</span>
+                        </button>
+                    </td>
+                </tr>
+            <% }); %>
+        <% } %>
         </tbody>
     </table>
 
