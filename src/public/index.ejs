@@ -12,34 +12,15 @@
 </head>
 
 <body>
-    <div class="menu">
-            <header>Menu</header>
-        <form>
-            <div class="menu-buttons">
-                <button class="registerBtn" type="button">
-                    <i class="uil-user-plus"></i>
-                    <span class="btnText">Registrar</span>
-                </button>
-
-                <button class="editBtn" type="button">
-                    <i class="uil-edit"></i>
-                    <span class="btnText">Editar</span>
-                </button>
-
-                <button class="showBtn"  type="button">
-                    <i class="uil-users-alt"></i>
-                    <span class="btnText">Mostrar</span>
-                </button>
-
-                <button class="deleteBtn" type="button">
-                    <i class="deleteBtn uil-user-minus"></i>
-                    <span class="btnText">Eliminar</span>
-                </button>
-            </div>
-        </form>
-    </div>
-
-    <table>
+<div class="header">
+    <h1>Administracion</h1>
+    <button class="registerBtn" type="button">
+        <i class="uil-user-plus"></i>
+        <span class="btnText">Registrar</span>
+    </button>
+</div>
+<div class="container clearfix">
+    <table class="table-style">
         <thead>
         <tr>
             <th>Name</th>
@@ -59,7 +40,7 @@
                     <td><%= client.Email %></td>
                     <td>
                         <button class="deleteBtn" data-client-id="<%= client.PersonID %>" type="button">
-                            <i class="uil-user-minus"></i>
+                            <i class="deleteBtn uil-user-minus"></i>
                             <span class="btnText">Eliminar</span>
                         </button>
                         <button class="showBtn" data-client-id="<%= client.PersonID %>" type="button">
@@ -76,8 +57,22 @@
         <% } %>
         </tbody>
     </table>
+    <% if(totalPages > 1) { %>
+        <div class="pagination">
+            <% if(hasPreviousPage) { %>
+                <a href="?page=<%= previousPage %>">&laquo; Previous</a>
+            <% } %>
+            <% for(let i = 1; i <= totalPages; i++) { %>
+                <a class="<%= i === currentPage ? 'active' : '' %>" href="?page=<%= i %>"><%= i %></a>
+            <% } %>
+            <% if(hasNextPage) { %>
+                <a href="?page=<%= nextPage %>">Next &raquo;</a>
+            <% } %>
+        </div>
+    <% } %>
+</div>
 
-    <script src="script-menu.js"></script>
+<script src="script-menu.js"></script>
 </body>
 
 </html>

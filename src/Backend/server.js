@@ -11,8 +11,8 @@ const app = express();
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
-app.set('view engine', 'ejs'); // Set EJS as the view engine
-app.set('views', path.join(__dirname, '../public')); // Set the directory for EJS templates
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../public'));
 
 
 const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost\\SQLEXPRESS;Database=ProjectoLuis;Trusted_Connection=yes;`;
@@ -35,14 +35,12 @@ sql.connect(config).then(connectionPool => {
         res.render('register.ejs');
     });
 
-    // Handle registration form submission
     app.post('/api/register', async (req, res) => {
 
         console.log(req.body);
 
         let transaction;
 
-        // Destructure all fields from the request body
         const {
             nombreCompleto,
             fechaNacimiento,
@@ -54,11 +52,10 @@ sql.connect(config).then(connectionPool => {
             tipoIdentificacion,
             identificationNumber,
             issueDate,
-            fechaExpiracion // Assuming you add this field to your Identification table
+            fechaExpiracion
         } = req.body;
 
         try {
-            // Begin transaction
             transaction = new sql.Transaction(/* [pool] */);
             await transaction.begin();
 
@@ -81,15 +78,13 @@ sql.connect(config).then(connectionPool => {
                 .input('TipoIdentificacion', sql.NVarChar, tipoIdentificacion)
                 .input('IdentificationNumber', sql.NVarChar, identificationNumber)
                 .input('IssueDate', sql.Date, issueDate)
-                .input('FechaExpiracion', sql.Date, fechaExpiracion) // You need to add this column to your Identification table
+                .input('FechaExpiracion', sql.Date, fechaExpiracion)
                 .query('INSERT INTO Identification (PersonID, TipoIdentificacion, IdentificationNumber, IssueDate, FechaExpiracion) VALUES (@PersonID, @TipoIdentificacion, @IdentificationNumber, @IssueDate, @FechaExpiracion)');
 
-            // Commit transaction
             await transaction.commit();
 
             res.json({ message: 'Registration successful', personID: personID });
         } catch (err) {
-            // Rollback transaction if any errors
             if (transaction) await transaction.rollback();
 
             console.error(err);
@@ -122,7 +117,6 @@ sql.connect(config).then(connectionPool => {
             await transaction.commit();
             res.json({ message: 'Address saved successfully' });
         } catch (err) {
-            // Rollback transaction if any errors
             if (transaction) {
                 await transaction.rollback();
             }
@@ -132,24 +126,42 @@ sql.connect(config).then(connectionPool => {
     });
 
     app.get('/', async (req, res) => {
+        const pageSize = 10;
+        let page = parseInt(req.query.page) || 1;
+
         try {
             const pool = await sql.connect(config);
-            const result = await pool.request().query('SELECT * FROM Person');
+            const clientCountResult = await pool.request().query('SELECT COUNT(*) AS count FROM Person');
+            const totalClients = clientCountResult.recordset[0].count;
+            const totalPages = Math.ceil(totalClients / pageSize);
+
+            // Calculate the starting row for the current page
+            const startingRow = (page - 1) * pageSize;
+            const result = await pool.request()
+                .query(`SELECT * FROM Person ORDER BY PersonID OFFSET ${startingRow} ROWS FETCH NEXT ${pageSize} ROWS ONLY`);
+
             const clients = result.recordset;
-            // Pass an additional variable to indicate if the clients array is empty
-            res.render('index', { clients, noClients: clients.length === 0 });
+            res.render('index', {
+                clients,
+                noClients: clients.length === 0,
+                currentPage: page,
+                totalPages: totalPages,
+                hasNextPage: page < totalPages,
+                hasPreviousPage: page > 1,
+                nextPage: page + 1,
+                previousPage: page - 1
+            });
         } catch (error) {
             console.error('Failed to fetch clients:', error);
             res.status(500).send('An error occurred while fetching clients.');
         }
     });
 
-
 // Fetch clients from the database
     async function fetchClientsFromDatabase() {
         try {
             const request = new sql.Request();
-            const result = await request.query('SELECT * FROM Person'); // Adjust the SQL query as needed
+            const result = await request.query('SELECT * FROM Person');
             return result.recordset;
         } catch (error) {
             console.error('Failed to fetch clients:', error);
@@ -157,21 +169,34 @@ sql.connect(config).then(connectionPool => {
         }
     }
 
-// Route to handle client deletion
     app.post('/clients/:id/delete', async (req, res) => {
         const personID = req.params.id;
+        let transaction;
+
         try {
-            const request = new sql.Request();
-            await request.input('PersonID', sql.Int, personID)
+            transaction = new sql.Transaction();
+            await transaction.begin();
+            const deleteIdentificationRequest = new sql.Request(transaction);
+            await deleteIdentificationRequest
+                .input('PersonID', sql.Int, personID)
+                .query('DELETE FROM Identification WHERE PersonID = @PersonID');
+
+            const deletePersonRequest = new sql.Request(transaction);
+            await deletePersonRequest
+                .input('PersonID', sql.Int, personID)
                 .query('DELETE FROM Person WHERE PersonID = @PersonID');
+
+            await transaction.commit();
             res.redirect('/');
         } catch (error) {
             console.error('Failed to delete client:', error);
+            if (transaction) {
+                await transaction.rollback();
+            }
             res.status(500).send('An error occurred while deleting the client.');
         }
     });
 
-// Route to handle client editing
 // This route should show a form to edit a client's data
     app.get('/clients/:id/edit', async (req, res) => {
         const personID = req.params.id;
@@ -180,12 +205,23 @@ sql.connect(config).then(connectionPool => {
             const result = await request.input('PersonID', sql.Int, personID)
                 .query('SELECT * FROM Person WHERE PersonID = @PersonID');
             const client = result.recordset[0];
-            res.render('edit-client', { client }); // You will need an 'edit-client.ejs' view for this
+            res.render('edit-client', { client });
         } catch (error) {
             console.error('Failed to fetch client for editing:', error);
             res.status(500).send('An error occurred while fetching the client for editing.');
         }
     });
+
+    app.get('/clients/:id/edit-script.js', (req, res) => {
+        const personID = req.params.id;
+
+        // Generate the file path for the client-specific JavaScript file
+        const scriptFilePath = path.join(__dirname, `../public/edit-script.js`);
+
+        // Serve the client-specific JavaScript file
+        res.sendFile(scriptFilePath);
+    });
+
 
 // Route to update client's information after editing
     app.post('/clients/:id/update', async (req, res) => {
@@ -199,7 +235,7 @@ sql.connect(config).then(connectionPool => {
             ocupacion,
             tipoPersona,
         } = req.body;
-
+        console.log(req.body);
         try {
             const request = new sql.Request();
             await request.input('PersonID', sql.Int, personID)
@@ -211,7 +247,6 @@ sql.connect(config).then(connectionPool => {
                 .input('Ocupacion', sql.NVarChar, ocupacion)
                 .input('TipoPersona', sql.NVarChar, tipoPersona)
                 .query('UPDATE Person SET NombreCompleto = @NombreCompleto, FechaNacimiento = @FechaNacimiento, Email = @Email, NumeroCelular = @NumeroCelular, Genero = @Genero, Ocupacion = @Ocupacion, TipoPersona = @TipoPersona WHERE PersonID = @PersonID');
-            res.redirect('/');
         } catch (error) {
             console.error('Failed to update client:', error);
             res.status(500).send('An error occurred while updating the client.');

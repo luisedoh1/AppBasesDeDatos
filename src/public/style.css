@@ -303,3 +303,133 @@ label {
 label input {
   width: 100%;
 }
+
+/* Ensure that the header is full width */
+.header {
+  display: flex;
+  justify-content: space-between; /* This will push the register button to the right */
+  align-items: center;
+  background-color: #ffffff; /* Or any color you prefer */
+  padding: 10px;
+  /* Add this if you want the header to be fixed at the top */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Style the register button */
+.registerBtn {
+  background-color: #42aaad; /* Change to the button color of your choice */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Table styles with rounded corners */
+.table-style {
+  background-color: #fff; /* Match this with your menu background color */
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Ensures the rounded corners are visible */
+  margin: 30px 30px 30px;
+}
+
+.table-style th, .table-style td {
+  border-bottom: 1px solid #ddd; /* For a line between rows */
+  padding: 8px;
+  text-align: left;
+}
+
+/* Make sure the menu doesn't overlap with the fixed header */
+.menu {
+  margin-top: 60px; /* Adjust as needed to not overlap with the fixed header */
+}
+
+/* Style for all buttons in the table */
+.table-style .editBtn,
+.table-style .showBtn,
+.table-style .deleteBtn {
+  background-color: #42aaad; /* Adjust the color to match your desired green */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 20px; /* Rounded corners, adjust as needed */
+  padding: 8px 16px; /* Vertical and horizontal padding */
+  margin: 4px; /* Spacing between buttons */
+  cursor: pointer;
+  font-weight: bold; /* Makes the text bold */
+  display: flex;
+  align-items: center; /* Centers items on the cross-axis */
+  justify-content: center; /* Centers items on the main-axis */
+  gap: 8px; /* Spacing between icon and text */
+  text-transform: uppercase; /* Optional: transforms text to uppercase */
+  font-size: 14px; /* Adjust text size as needed */
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
+  transition: background-color 0.3s; /* Smooth background color transition on hover */
+}
+
+/* Hover effect for buttons */
+.table-style .editBtn:hover,
+.table-style .showBtn:hover,
+.table-style .deleteBtn:hover {
+  background-color: #42aaad; /* Darker green on hover, adjust as needed */
+}
+
+/* Adjust the size of the icons if necessary */
+.table-style .editBtn i,
+.table-style .showBtn i,
+.table-style .deleteBtn i {
+  font-size: 16px; /* Adjust icon size as needed */
+}
+
+.pagination {
+  text-align: center; /* Center the pagination links */
+  padding: 10px 0; /* Add some padding at the top and bottom */
+  margin-top: 20px; /* Or any space you find suitable */
+  background-color: #ffffff; /* Or any color that fits the design */
+  border-radius: 4px; /* Optional: if you want rounded corners */
+  /* Other styles... */
+}
+
+.pagination a {
+  background-color: #42aaad; /* Green background */
+  color: white; /* White text */
+  border: none; /* No border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 8px 16px; /* Padding inside the links */
+  margin: 4px; /* Margin between links */
+  text-decoration: none; /* No underline */
+  font-size: 14px; /* Font size similar to your buttons */
+  display: inline-block; /* Display links inline */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+.pagination a:hover {
+  background-color: #42aaad; /* Darker shade of green for hover effect */
+}
+
+/* Active page link */
+.pagination a.active {
+  background-color: #42aaad; /* Even darker green for the active page */
+  pointer-events: none; /* Disables the link to prevent clicking on the current page */
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container {
+  width: calc(100% - 20px); /* This calculation reduces the total width by the left and right margins */
+  margin: 100px 30px 30px 30px; /* Top, right, bottom, and left margins */
+}
