@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Client</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+
+<div class="edit-client-form">
+    <h1>Edit Client</h1>
+    <form action="/clients/<%= client.PersonID %>/update" method="post">
+        <div class="form-group">
+            <label for="nombreCompleto">Full Name:</label>
+            <input type="text" id="nombreCompleto" name="nombreCompleto" value="<%= client.NombreCompleto %>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fechaNacimiento">Date of Birth:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%= client.FechaNacimiento.toISOString().split('T')[0] %>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<%= client.Email %>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="numeroCelular">Cellphone Number:</label>
+            <input type="text" id="numeroCelular" name="numeroCelular" value="<%= client.NumeroCelular %>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="genero">Gender:</label>
+            <select id="genero" name="genero" required>
+                <option value="M" <%= client.Genero === 'M' ? 'selected' : '' %>>Male</option>
+                <option value="F" <%= client.Genero === 'F' ? 'selected' : '' %>>Female</option>
+                <option value="O" <%= client.Genero === 'O' ? 'selected' : '' %>>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ocupacion">Occupation:</label>
+            <input type="text" id="ocupacion" name="ocupacion" value="<%= client.Ocupacion %>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipoPersona">Person Type:</label>
+            <select id="tipoPersona" name="tipoPersona" required>
+                <option value="F" <%= client.TipoPersona === 'F' ? 'selected' : '' %>>Physical</option>
+                <option value="J" <%= client.TipoPersona === 'J' ? 'selected' : '' %>>Legal</option>
+                <option value="P" <%= client.TipoPersona === 'P' ? 'selected' : '' %>>SME</option>
+            </select>
+        </div>
+
+        <button type="submit">Update Client</button>
+    </form>
+</div>
+
+</body>
+</html>

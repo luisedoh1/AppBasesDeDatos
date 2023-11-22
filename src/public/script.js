@@ -83,6 +83,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         submitAllData(registrationData, addressData);
     });
 
+
+
     backBtn.addEventListener("click", () => {
         if (registrationCompleted) {
             form.classList.remove('secActive');

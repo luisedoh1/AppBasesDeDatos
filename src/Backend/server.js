@@ -5,33 +5,35 @@ require('dotenv').config();
 const express = require('express');
 const sql = require('mssql/msnodesqlv8');
 const cors = require('cors');
-const { join } = require("path");
+const path = require('path');
 const app = express();
 
 app.use(cors());
-app.use(express.static(join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
+app.set('view engine', 'ejs'); // Set EJS as the view engine
+app.set('views', path.join(__dirname, '../public')); // Set the directory for EJS templates
 
-app.get('/index', (req, res) => {
-    res.sendFile(join(__dirname, '../public/index.html'));
-});
 
-app.get('/register', (req, res) => {
-    res.sendFile(join(__dirname, '../public/register.html'));
-});
-
-const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=LAPTOP-LUISHQ;Database=Proyecto;Trusted_Connection=yes;`;
+const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost\\SQLEXPRESS;Database=ProjectoLuis;Trusted_Connection=yes;`;
 
 const config = {
     connectionString: connectionString,
+    Port: 1450,
     options: {
         trustedConnection: true
     }
 };
 
+
+
 // Connect to your SQL Server database
 sql.connect(config).then(connectionPool => {
     console.log('Connected to SQL Server successfully.');
+
+    app.get('/register', (req, res) => {
+        res.render('register.ejs');
+    });
 
     // Handle registration form submission
     app.post('/api/register', async (req, res) => {
@@ -129,9 +131,94 @@ sql.connect(config).then(connectionPool => {
         }
     });
 
+    app.get('/', async (req, res) => {
+        try {
+            const pool = await sql.connect(config);
+            const result = await pool.request().query('SELECT * FROM Person');
+            res.render('index', { clients: result.recordset });
+        } catch (error) {
+            console.error('Failed to fetch clients:', error);
+            res.status(500).send('An error occurred while fetching clients.');
+        }
+    });
+
+// Fetch clients from the database
+    async function fetchClientsFromDatabase() {
+        try {
+            const request = new sql.Request();
+            const result = await request.query('SELECT * FROM Person'); // Adjust the SQL query as needed
+            return result.recordset;
+        } catch (error) {
+            console.error('Failed to fetch clients:', error);
+            throw error;
+        }
+    }
+
+// Route to handle client deletion
+    app.post('/clients/:id/delete', async (req, res) => {
+        const personID = req.params.id;
+        try {
+            const request = new sql.Request();
+            await request.input('PersonID', sql.Int, personID)
+                .query('DELETE FROM Person WHERE PersonID = @PersonID');
+            res.redirect('/');
+        } catch (error) {
+            console.error('Failed to delete client:', error);
+            res.status(500).send('An error occurred while deleting the client.');
+        }
+    });
+
+// Route to handle client editing
+// This route should show a form to edit a client's data
+    app.get('/clients/:id/edit', async (req, res) => {
+        const personID = req.params.id;
+        try {
+            const request = new sql.Request();
+            const result = await request.input('PersonID', sql.Int, personID)
+                .query('SELECT * FROM Person WHERE PersonID = @PersonID');
+            const client = result.recordset[0];
+            res.render('edit-client', { client }); // You will need an 'edit-client.ejs' view for this
+        } catch (error) {
+            console.error('Failed to fetch client for editing:', error);
+            res.status(500).send('An error occurred while fetching the client for editing.');
+        }
+    });
+
+// Route to update client's information after editing
+    app.post('/clients/:id/update', async (req, res) => {
+        const personID = req.params.id;
+        const {
+            nombreCompleto,
+            fechaNacimiento,
+            email,
+            numeroCelular,
+            genero,
+            ocupacion,
+            tipoPersona,
+        } = req.body;
+
+        try {
+            const request = new sql.Request();
+            await request.input('PersonID', sql.Int, personID)
+                .input('NombreCompleto', sql.NVarChar, nombreCompleto)
+                .input('FechaNacimiento', sql.Date, fechaNacimiento)
+                .input('Email', sql.NVarChar, email)
+                .input('NumeroCelular', sql.NVarChar, numeroCelular)
+                .input('Genero', sql.NVarChar, genero)
+                .input('Ocupacion', sql.NVarChar, ocupacion)
+                .input('TipoPersona', sql.NVarChar, tipoPersona)
+                .query('UPDATE Person SET NombreCompleto = @NombreCompleto, FechaNacimiento = @FechaNacimiento, Email = @Email, NumeroCelular = @NumeroCelular, Genero = @Genero, Ocupacion = @Ocupacion, TipoPersona = @TipoPersona WHERE PersonID = @PersonID');
+            res.redirect('/');
+        } catch (error) {
+            console.error('Failed to update client:', error);
+            res.status(500).send('An error occurred while updating the client.');
+        }
+    });
+
     // Start the server
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }).catch(err => {
     console.error('Failed to open a SQL Server connection.', err);
 });
+
