@@ -3,6 +3,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     registerBtn = document.querySelector(".registerBtn");
 
   registerBtn.addEventListener("click", () => {
-    window.location.href = "./register.html";
+    window.location.href = "./register";
   });
 });

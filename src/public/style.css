@@ -55,7 +55,7 @@ body {
 
 .menu header {
   position: relative;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
   color: #333;
 }
@@ -65,7 +65,7 @@ body {
   position: absolute;
   left: 0;
   bottom: -6px;
-  height: 3px;
+  height: 4px;
   width: 65px;
   background-color: #42aaad;
 }
@@ -133,11 +133,11 @@ form.secActive .form.first {
   margin: 4px 0;
 }
 
-.form .fields .label .input{
-    display: flex;
-    width: calc(100% / 3 - 15px);
-    flex-direction: column;
-    margin: 4px 0;
+.label {
+  display: flex;
+  width: calc(100% / 3 - 15px);
+  flex-direction: column;
+  margin: 4px 0;
 }
 
 .input-field label {
@@ -209,7 +209,7 @@ form.secActive .form.first {
   pointer-events: auto;
 }
 
-.menu form button{
+.menu form button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -227,9 +227,12 @@ form.secActive .form.first {
   pointer-events: auto;
 }
 
-.menu form button{
+.menu form button {
   font-size: 16px;
   font-weight: 400;
+}
+.menu form button i{
+  font-size: 20px;
 }
 
 .container form button,
@@ -268,12 +271,11 @@ form .buttons button,
   background-color: #42aaad;
 }
 
-
 form .menu-buttons {
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 @media (max-width: 750px) {
@@ -289,7 +291,15 @@ form .menu-buttons {
 }
 
 @media (max-width: 550px) {
-    .form .fields .input-field {
-        width: 100%;
-      }
+  .form .fields .input-field {
+    width: 100%;
+  }
+}
+
+label {
+  width: 100%;
+}
+
+label input {
+  width: 100%;
 }

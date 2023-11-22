@@ -4,7 +4,8 @@
   "description": "Aplicacion para manejo de usuarios",
   "main": "src/public/script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/Backend/server.js"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,5 @@
 /*
-Important: Run this, not the script.js. It's run with "node .\src\Backend\server.js"
+Important: Run with = npm start"
 */
 require('dotenv').config();
 const express = require('express');
