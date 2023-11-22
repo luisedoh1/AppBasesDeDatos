@@ -255,6 +255,7 @@ form .backBtn i {
   transform: rotate(180deg);
 }
 
+
 form .buttons {
   display: flex;
   pointer-events: auto;
@@ -321,6 +322,19 @@ label input {
 
 /* Style the register button */
 .registerBtn {
+  background-color: #42aaad; /* Change to the button color of your choice */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.homeBtn {
   background-color: #42aaad; /* Change to the button color of your choice */
   color: white;
   border: none;

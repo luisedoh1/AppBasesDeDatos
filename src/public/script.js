@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         nextBtn = document.querySelector(".nextBtn"),
         submitBtn = document.querySelector(".submitBtn"),
         backBtn = document.querySelector(".backBtn");
+        homeBtn = document.querySelector(".homeBtn");
 
     let registrationCompleted = false;
 
@@ -52,6 +53,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             registrationCompleted = true;
             form.classList.add('secActive');
         }
+    });
+
+    homeBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = '/';
     });
 
     submitBtn.addEventListener("click", (event) => {
