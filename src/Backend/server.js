@@ -36,6 +36,8 @@ sql.connect(config).then(connectionPool => {
     });
 
     app.post('/api/register', async (req, res) => {
+
+        console.log(req.body)
         let transaction;
 
         const {

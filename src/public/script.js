@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function submitAllData(registrationData, addressData) {
-        fetch('http://localhost:3000/api/register', {
+        console.log('Sending registrationData:', registrationData);
+        console.log('Sending addressData:', addressData);
+        fetch('/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             .then(response => response.json())
             .then(data => {
                 alert('Registration and address saved successfully!');
-                // Here you can redirect to another page or reset the form
+                window.location.href = '/';
             })
             .catch(error => {
                 console.error('Failed to save data:', error);
@@ -87,7 +89,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
 
         submitAllData(registrationData, addressData);
-        window.location.href = '/';
     });
 
 
