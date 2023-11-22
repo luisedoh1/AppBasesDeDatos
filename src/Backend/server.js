@@ -36,9 +36,6 @@ sql.connect(config).then(connectionPool => {
     });
 
     app.post('/api/register', async (req, res) => {
-
-        console.log(req.body);
-
         let transaction;
 
         const {
@@ -235,7 +232,6 @@ sql.connect(config).then(connectionPool => {
             ocupacion,
             tipoPersona,
         } = req.body;
-        console.log(req.body);
         try {
             const request = new sql.Request();
             await request.input('PersonID', sql.Int, personID)
