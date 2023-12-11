@@ -61,16 +61,20 @@
                         </label>
                     </div>
                     <div class="input-field">
-                        <label>Email:</label>
+                        <label>Lugar de Nacimiento</label>
                         <label>
-                            <input type="email" placeholder="Escriba su correo electronico" name="email" required>
-                        </label> 
+                            <input type="text" placeholder="Escriba su lugar de nacimiento" name="lugarNacimiento" required>
+                        </label>
                     </div>
                     <div class="input-field">
-                        <label>Numero de Celular</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su numero de celular" name="numeroCelular" required>
-                        </label>
+                        <label>Estado Civil</label>
+                        <select name="estCivil" id="estCivil">
+                            <option selected>Seleccione su Estado Civil</option>
+                            <option value="S">Soltero</option>
+                            <option value="C">Casado</option>
+                            <option value="D">Divorciado</option>
+                            <option value="O">Otro</option>
+                        </select>
                     </div>
                     <div class="input-field">
                         <label>Genero:</label>
@@ -156,30 +160,22 @@
                         <label for="direccionTipo"></label>
                         <select name="direccionTipo" id="direccionTipo">
                             <option selected>Seleccione el tipo</option>
-                            <option value="H">Hogar</option>
+                            <option value="D">Domicilio</option>
                             <option value="T">Trabajo</option>
-                            <option value="O">Otro</option>
                         </select>
                     </div>
 
                     <div class="input-field">
-                        <label>Fecha de Nacimiento:</label>
+                        <label>Linea Dirección 1:</label>
                         <label>
-                            <input type="date" placeholder="Escriba su fecha" name="fechaNacimiento">
+                            <input type="text" placeholder="Escriba su direccion" name="linea1" required>
                         </label>
                     </div>
 
                     <div class="input-field">
-                        <label>Email:</label>
+                        <label>Linea Dirección 2 (opcional):</label>
                         <label>
-                            <input type="text" placeholder="Escriba su correo electronico" name="email2" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Numero de Celular</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su numero de celular" name="numero2" required>
+                            <input type="text" placeholder="Escriba su direccion" name="linea2" required>
                         </label>
                     </div>
 
