@@ -19,38 +19,41 @@
     </div>
     <div class="container">
         <h1>Edit Client</h1>
-        <form action="/clients/<%= client.PersonID %>/update" method="post">
+        <form action="/clients/<%= client.PersonaID %>/update" method="post">
             <div class="form first">
                 <div class="form-group">
-                    <label for="nombreCompleto">Full Name:</label>
-                    <input type="text" id="nombreCompleto" name="nombreCompleto" value="<%= client.NombreCompleto %>"
+                    <label for="primerNombre">Primer Nombre:</label>
+                    <input type="text" id="primerNombre" name="primerNombre" value="<%= client.Primer_Nombre %>"
                         required>
                 </div>
-                
+                <div class="form-group">
+                    <label for="segundoNombre">Segundo Nombre:</label>
+                    <input type="text" id="segundoNombre" name="segundoNombre" value="<%= client.Segundo_Nombre %>"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="primerApellido">Primer Apellido:</label>
+                    <input type="text" id="primerApellido" name="primerApellido" value="<%= client.Primer_Apellido %>"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="segundoApellido">Segundo Apellido:</label>
+                    <input type="text" id="segundoApellido" name="segundoApellido" value="<%= client.Segundo_Apellido %>"
+                        required>
+                </div>
                 <div class="form-group">
                     <label for="fechaNacimiento">Date of Birth:</label>
                     <input type="date" id="fechaNacimiento" name="fechaNacimiento"
-                        value="<%= client.fechaNacimiento ? client.fechaNacimiento.toISOString().split('T')[0] : '' %>"
+                        value="<%= client.Fecha_Nacimiento ? client.fechaNacimiento.toISOString().split('T')[0] : '' %>"
                         required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<%= client.Email %>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="numeroCelular">Cellphone Number:</label>
-                    <input type="text" id="numeroCelular" name="numeroCelular" value="<%= client.NumeroCelular %>"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="genero">Gender:</label>
+                    <label for="genero">Genero:</label>
                     <select id="genero" name="genero" required>
-                        <option value="M" <%=client.Genero==='M' ? 'selected' : '' %>>Male</option>
-                        <option value="F" <%=client.Genero==='F' ? 'selected' : '' %>>Female</option>
-                        <option value="O" <%=client.Genero==='O' ? 'selected' : '' %>>Other</option>
+                        <option value="1" <%=client.GeneroID==='1' ? 'selected' : '' %>>Male</option>
+                        <option value="2" <%=client.GeneroID==='2' ? 'selected' : '' %>>Female</option>
+                        <option value="3" <%=client.GeneroID==='3' ? 'selected' : '' %>>Other</option>
                     </select>
                 </div>
 
@@ -62,9 +65,9 @@
                 <div class="form-group">
                     <label for="tipoPersona">Person Type:</label>
                     <select id="tipoPersona" name="tipoPersona" required>
-                        <option value="F" <%=client.TipoPersona==='F' ? 'selected' : '' %>>Physical</option>
-                        <option value="J" <%=client.TipoPersona==='J' ? 'selected' : '' %>>Legal</option>
-                        <option value="P" <%=client.TipoPersona==='P' ? 'selected' : '' %>>SME</option>
+                        <option value="1" <%=client.Tipo_PersonaID==='1' ? 'selected' : '' %>>Juridica</option>
+                        <option value="2" <%=client.Tipo_PersonaID==='2' ? 'selected' : '' %>>Fisica</option>
+                        <option value="3" <%=client.Tipo_PersonaID==='3' ? 'selected' : '' %>>PYME</option>
                     </select>
                 </div>
 

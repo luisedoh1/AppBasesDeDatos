@@ -9,8 +9,7 @@ const path = require("path");
 const app = express();
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')));
-//app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../public"));
@@ -220,8 +219,8 @@ sql
             try {
                 const request = new sql.Request();
                 const result = await request
-                    .input("PersonID", sql.Int, personID)
-                    .query("SELECT * FROM Person WHERE PersonID = @PersonID");
+                    .input("PersonaID", sql.Int, personID)
+                    .query("SELECT * FROM Persona.PERSONA WHERE PersonaID = @PersonaID");
                 const client = result.recordset[0];
                 res.render("edit-client", {client});
             } catch (error) {
@@ -246,27 +245,35 @@ sql
         app.post("/clients/:id/update", async (req, res) => {
             const personID = req.params.id;
             const {
-                nombreCompleto,
-                fechaNacimiento,
-                email,
-                numeroCelular,
-                genero,
-                ocupacion,
-                tipoPersona,
+              primerNombre,
+              segundoNombre,
+              primerApellido,
+              segundoApellido,
+              fechaNacimiento,
+              lugarNacimiento,
+              genero,
+              numeroDependientes,
+              profesion,
+              actividadEcon,
+              tipoPersona
             } = req.body;
             try {
                 const request = new sql.Request();
                 await request
-                    .input("PersonID", sql.Int, personID)
-                    .input("NombreCompleto", sql.NVarChar, nombreCompleto)
-                    .input("FechaNacimiento", sql.Date, fechaNacimiento)
-                    .input("Email", sql.NVarChar, email)
-                    .input("NumeroCelular", sql.NVarChar, numeroCelular)
-                    .input("Genero", sql.NVarChar, genero)
-                    .input("Ocupacion", sql.NVarChar, ocupacion)
-                    .input("TipoPersona", sql.NVarChar, tipoPersona)
+                    .input('PersonaID', sql.SmallInt, personID)
+                    .input("Primer_Nombre", sql.NVarChar, primerNombre)
+                    .input("Segundo_Nombre", sql.NVarChar, segundoNombre) // changed from "SegundoNombre" to "segundoNombre"
+                    .input("Primer_Apellido", sql.NVarChar, primerApellido) // changed from "PrimerApellido" to "primerApellido"
+                    .input("Segundo_Apellido", sql.NVarChar, segundoApellido) // changed from "SegundoApellido" to "segundoApellido"
+                    .input("Fecha_Nacimiento", sql.Date, fechaNacimiento) // changed from "FechaNacimiento" to "Fecha_Nacimiento"
+                    .input("Lugar_Nacimiento", sql.NVarChar, lugarNacimiento) // changed from "LugarNacimiento" to "Lugar_Nacimiento"
+                    .input("Profesion_ID", sql.SmallInt, profesion) // changed from "Profesion" to "Profesion_ID" and sql.TinyInt to sql.SmallInt
+                    .input("GeneroID", sql.TinyInt, genero) // changed from "Genero" to "GeneroID"
+                    .input("Tipo_PersonaID", sql.TinyInt, tipoPersona) // changed from "TipoPersona" to "Tipo_PersonaID"
+                    .input("Numero_Dependientes", sql.TinyInt, numeroDependientes) // changed from "NumeroDependientes" to "Numero_Dependientes"
+                    .input("ActividadEconomica_ID", sql.TinyInt, actividadEcon)
                     .query(
-                        "UPDATE Person SET NombreCompleto = @NombreCompleto, FechaNacimiento = @FechaNacimiento, Email = @Email, NumeroCelular = @NumeroCelular, Genero = @Genero, Ocupacion = @Ocupacion, TipoPersona = @TipoPersona WHERE PersonID = @PersonID"
+                        "UPDATE Person SET Primer_Nombre = @Primer_Nombre, Segundo_Nombre = @Segundo_Nombre,Primer_Apellido = @Primer_Apellido,Segundo_Apellido = @Segundo_Apellido, Fecha_Nacimiento = @Fecha_Nacimiento, Lugar_Nacimiento = @Lugar_Nacimiento, Profesion_ID = @Profesion_ID, GeneroID = @GeneroID, Tipo_PersonaID = @Tipo_PersonaID,Numero_Dependientes = @Numero_Dependientes, ActividadEconomica_ID = @ActividadEconomica_ID WHERE PersonID = @PersonID"
                     );
             } catch (error) {
                 console.error("Failed to update client:", error);
