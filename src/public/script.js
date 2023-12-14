@@ -21,17 +21,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             },
             body: JSON.stringify(registrationData),
         })
-            .then(response => response.json())
-            .then(data => {
-                return fetch('/api/address', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(addressData),
-                });
-            })
-            .then(response => response.json())
+            // .then(response => response.json())
+            // .then(data => {
+            //     return fetch('/api/address', {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //         },
+            //         body: JSON.stringify(addressData),
+            //     });
+            // })
+            // .then(response => response.json())
             .then(data => {
                 alert('Registration and address saved successfully!');
                 window.location.href = '/';
@@ -83,6 +83,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             registrationData[input.name] = input.value;
         });
 
+        const selectElements = document.querySelectorAll(".first select");
+        selectElements.forEach(select => {
+            registrationData[select.name] = select.value;
+        });
+
         const addressData = {};
         addressInputs.forEach(input => {
             addressData[input.name] = input.value;
@@ -102,3 +107,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+
+

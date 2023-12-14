@@ -312,7 +312,6 @@ label input {
   align-items: center;
   background-color: #ffffff; /* Or any color you prefer */
   padding: 10px;
-  /* Add this if you want the header to be fixed at the top */
   position: fixed;
   top: 0;
   left: 0;
@@ -364,11 +363,24 @@ label input {
     padding: 10px; /* Add padding to the container to create space */
     overflow-x: auto; /* Add horizontal scroll for small screens */
   }
-  .table-style {
-    width: 100%;
-    font-size: 12px;
+
+  /* Reduce the width of the buttons to fit within the container */
+  .table-style .editBtn,
+  .table-style .showBtn,
+  .table-style .deleteBtn {
+    font-size: 12px; /* Adjust text size for mobile */
+    padding: 4px 8px; /* Reduce padding for mobile */
+    width: auto; /* Allow buttons to expand horizontally on mobile */
+  }
+
+  /* Adjust the size of the icons for mobile */
+  .table-style .editBtn i,
+  .table-style .showBtn i,
+  .table-style .deleteBtn i {
+    font-size: 14px; /* Adjust icon size for mobile */
   }
 }
+
 
 .table-style th, .table-style td {
   border-bottom: 1px solid #ddd; /* For a line between rows */
@@ -458,5 +470,5 @@ label input {
 
 .container {
   width: calc(100% - 20px); /* This calculation reduces the total width by the left and right margins */
-  margin: auto; /* Top, right, bottom, and left margins */
+  margin: 100px auto auto auto; /* Top, right, bottom, and left margins */
 }
