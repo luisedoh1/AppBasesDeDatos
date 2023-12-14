@@ -73,7 +73,7 @@ sql
           );
 
         const personID = personResult.recordset[0].PersonID;
-
+        /*
         const identificationRequest = new sql.Request(transaction);
         await identificationRequest
           .input("PersonID", sql.Int, personID)
@@ -83,7 +83,7 @@ sql
           .input("FechaExpiracion", sql.Date, fechaExpiracion)
           .query(
             "INSERT INTO Identification (PersonID, TipoIdentificacion, IdentificationNumber, IssueDate, FechaExpiracion) VALUES (@PersonID, @TipoIdentificacion, @IdentificationNumber, @IssueDate, @FechaExpiracion)"
-          );
+          );*/
 
         await transaction.commit();
 
