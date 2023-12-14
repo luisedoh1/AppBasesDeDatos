@@ -67,13 +67,18 @@
                         </label>
                     </div>
                     <div class="input-field">
-                        <label>Estado Civil</label>
-                        <select name="estCivil" id="estCivil">
+                        <label>Numero de Dependientes</label>
+                        <label>
+                            <input type="text" placeholder="Escriba la cantidad de dependientes" name="numeroDependientes" required>
+                        </label>
+                    </div>
+                    <div class="input-field">
+                        <label>Tipo de Persona</label>
+                        <select name="tipoPersona" id="tipoPersona">
                             <option selected>Seleccione su Estado Civil</option>
-                            <option value="S">Soltero</option>
-                            <option value="C">Casado</option>
-                            <option value="D">Divorciado</option>
-                            <option value="O">Otro</option>
+                            <option value="1">Juridica</option>
+                            <option value="2">Fisica</option>
+                            <option value="3">PYME</option>
                         </select>
                     </div>
                     <div class="input-field">
@@ -86,62 +91,29 @@
                         </select>
                     </div>
                     <div class="input-field">
-                        <label>Ocupación:</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su ocupación" name="ocupacion" required>
-                        </label>
+                        <label>Profesión:</label>
+                        <select name="profesion" id="profesionPer">
+                            <option selected>Seleccione su profesión</option>
+                            <option value="1">Ingeniero de Software</option>
+                            <option value="NULL">NULL</option>
+
+                        </select>
                     </div>
+                    <div class="input-field">
+                        <label>Actividad Económica:</label>
+                        <select name="actividadEcon" id="actividadEconPer">
+                            <option selected>Seleccione su actividad Económica</option>
+                            <option value="1">Desarrollo de software y servicios informáticos</option>
+                            <option value="NULL">NULL</option>
+
+                        </select>
+                    </div>
+
                 </div>
             </div>
 
             <div class="details ID">
 
-                <span class="tittle">Detalles Documento de Identidad</span>
-
-                <div class="fields">
-                    <div class="input-field">
-                        <label>Tipo Identificación:</label>
-                        <label for="tipoIdentificacion"></label><select name="tipoIdentificacion" id="tipoIdentificacion">
-                            <option selected>Seleccione el tipo</option>
-                            <option value="1">Cedula</option>
-                            <option value="2">DIMEX</option>
-                            <option value="3">Pasaporte</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Numero de Identificación:</label>
-                        <label>
-                            <input type="text" placeholder="Escriba su numero de Identificación" name="identificacion" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Tipo de Persona:</label>
-                        <label for="tipoPersona"></label>
-                        <select name="tipoPersona" id="tipoPersona">
-                            <option selected>Seleccione el tipo</option>
-                            <option value="F">Física</option>
-                            <option value="J">Jurídica</option>
-                            <option value="P">PYME</option>
-                        </select>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Fecha de Emisión:</label>
-                        <label>
-                            <input type="date" placeholder="Escriba su fecha" name="issueDate" required>
-                        </label>
-                    </div>
-
-                    <div class="input-field">
-                        <label>Fecha de Expiración:</label>
-                        <label>
-                            <input type="date" placeholder="Escriba su fecha" name="fechaExpiracion">
-                        </label>
-                    </div>
-
-                </div>
                 <button class="nextBtn">
                     <span class="btnText">Next</span>
                     <i class="uil uil-navigator"></i>
@@ -228,12 +200,13 @@
                     </div>
 
                     <div class="input-field">
-                        <label>Tipo de Persona:</label>
-                        <label for="tipoPersonaDir"></label><select name="tipoPersonaDir" id="tipoPersonaDir">
-                            <option selected>Seleccione el tipo</option>
-                            <option value="F">Física</option>
-                            <option value="J">Jurídica</option>
-                            <option value="P">PYME</option>
+                        <label>Estado Civil</label>
+                        <select name="estCivil" id="estCivil">
+                            <option selected>Seleccione su Estado Civil</option>
+                            <option value="S">Soltero</option>
+                            <option value="C">Casado</option>
+                            <option value="D">Divorciado</option>
+                            <option value="O">Otro</option>
                         </select>
                     </div>
 

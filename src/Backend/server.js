@@ -14,11 +14,11 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../public"));
 
-const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=ProjectoLuis;Trusted_Connection=yes;`;
+const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=Base_Proyecto;Trusted_Connection=yes;`;
 
 const config = {
   connectionString: connectionString,
-  Port: 1450,
+  Port: 1433,
   options: {
     trustedConnection: true,
   },
@@ -39,17 +39,16 @@ sql
       let transaction;
 
       const {
-        nombreCompleto,
+        primerNombre,
+        segundoNombre,
+        primerApellido,
+        segundoApellido,
         fechaNacimiento,
-        email,
-        numeroCelular,
+        lugarNacimiento,
         genero,
-        ocupacion,
-        tipoPersona,
-        tipoIdentificacion,
-        identificationNumber,
-        issueDate,
-        fechaExpiracion,
+        numeroDependientes,
+        profesion,
+        actividadEcon
       } = req.body;
 
       try {
@@ -58,15 +57,19 @@ sql
 
         const personRequest = new sql.Request(transaction);
         const personResult = await personRequest
-          .input("NombreCompleto", sql.NVarChar, nombreCompleto)
+          .input("PrimerNombre", sql.NVarChar, primerNombre)
+          .input("SegundoNombre", sql.NVarChar, segundoNombre)
+          .input("PrimerApellido", sql.NVarChar, primerApellido)
+          .input("SegundoApellido", sql.NVarChar, segundoApellido)
           .input("FechaNacimiento", sql.Date, fechaNacimiento)
-          .input("Email", sql.NVarChar, email)
-          .input("NumeroCelular", sql.NVarChar, numeroCelular)
-          .input("Genero", sql.NVarChar, genero)
-          .input("Ocupacion", sql.NVarChar, ocupacion)
-          .input("TipoPersona", sql.NVarChar, tipoPersona)
+          .input("LugarNacimiento", sql.NVarChar, lugarNacimiento)
+          .input("Profesion", sql.TinyInt, profesion)
+          .input("Genero", sql.TinyInt, genero)
+          .input("TipoPersona", sql.TinyInt, tipoPersona)
+          .input("NumeroDependientes", sql.TinyInt, numeroDependientes)
+          .input("ActividadEconomica", sql.TinyInt, actividadEcon)
           .query(
-            "INSERT INTO Person (NombreCompleto, FechaNacimiento, Email, NumeroCelular, Genero, Ocupacion, TipoPersona) OUTPUT INSERTED.PersonID VALUES (@NombreCompleto, @FechaNacimiento, @Email, @NumeroCelular, @Genero, @Ocupacion, @TipoPersona)"
+            "EXEC insertarPersona @PrimerNombre, @SegundoNombre, @PrimerApellido, @SegundoApellido,@FechaNacimiento, @LugarNacimiento, @NumeroDependientes, @TipoPersona, @Genero, @ActividadEconomica, @Profesion, 1, NULL;"
           );
 
         const personID = personResult.recordset[0].PersonID;
@@ -136,7 +139,7 @@ sql
         const pool = await sql.connect(config);
         const clientCountResult = await pool
           .request()
-          .query("SELECT COUNT(*) AS count FROM Person");
+          .query("SELECT COUNT(*) AS count FROM Persona.PERSONA");
         const totalClients = clientCountResult.recordset[0].count;
         const totalPages = Math.ceil(totalClients / pageSize);
 
@@ -145,7 +148,7 @@ sql
         const result = await pool
           .request()
           .query(
-            `SELECT * FROM Person ORDER BY PersonID OFFSET ${startingRow} ROWS FETCH NEXT ${pageSize} ROWS ONLY`
+            `SELECT * FROM Persona.PERSONA ORDER BY PersonaID OFFSET ${startingRow} ROWS FETCH NEXT ${pageSize} ROWS ONLY`
           );
 
         const clients = result.recordset;
