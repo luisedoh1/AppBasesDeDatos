@@ -23,8 +23,8 @@
     <table class="table-style">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Nombre</th>
-            <th>Email</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -36,18 +36,18 @@
         <% } else { %>
             <% clients.forEach(function(client) { %>
                 <tr>
-                    <td><%= client.NombreCompleto %></td>
-                    <td><%= client.Email %></td>
+                    <td><%= client.PersonaID %></td>
+                    <td><%= client.Primer_Nombre %></td>
                     <td>
-                        <button class="deleteBtn" data-client-id="<%= client.PersonID %>" type="button">
+                        <button class="deleteBtn" data-client-id="<%= client.PersonaID %>" type="button">
                             <i class="uil-user-minus"></i>
                             <span class="btnText">Eliminar</span>
                         </button>
-                        <button class="showBtn" data-client-id="<%= client.PersonID %>" type="button">
+                        <button class="showBtn" data-client-id="<%= client.PersonaID %>" type="button">
                             <i class="uil-eye"></i>
                             <span class="btnText">Mostrar</span>
                         </button>
-                        <button class="editBtn" data-client-id="<%= client.PersonID %>" type="button">
+                        <button class="editBtn" data-client-id="<%= client.PersonaID %>" type="button">
                             <i class="uil-edit"></i>
                             <span class="btnText">Editar</span>
                         </button>

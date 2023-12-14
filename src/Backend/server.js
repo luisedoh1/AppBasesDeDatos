@@ -9,12 +9,13 @@ const path = require("path");
 const app = express();
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../public"));
 
-const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost\\SQLEXPRESS;Database=Base_Proyecto;Trusted_Connection=yes;`;
+const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=Base_Proyecto;Trusted_Connection=yes;`;
 
 const config = {
     connectionString: connectionString,
