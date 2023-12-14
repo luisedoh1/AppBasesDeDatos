@@ -573,13 +573,6 @@ CREATE TABLE Homologacion.TABLA_HL_ACTIVIDAD_ECONOMICA (
 	CONSTRAINT FK_Actividad_HL FOREIGN KEY (Actividad_ID) REFERENCES Persona.ACTIVIDAD_ECONOMICA(ActividadEconomica_ID)
 );
 
-/*
-## insert, update y delete ##  
--Genero_listo
--profesion_listo
--estado_civil_listo
--actividad_economica_
-*/
 
 GO
 CREATE PROCEDURE insertarPersona
@@ -630,11 +623,6 @@ BEGIN
 END;
 
 
-
-
-EXEC insertarPersona N'Alex', N'José', N'Quesada', N'Jiménez','2001-11-19', N'Grecia', 0, 2, 1, NULL, 1, 1, NULL;
-
-/*########### procedures de Genero##############*/
 GO
 CREATE PROCEDURE insertarGenero --
 (
@@ -647,7 +635,6 @@ BEGIN
     (@descripcion);
 END;
 
-EXEC insertarGenero N'pruebaGenero'
 
 GO
 CREATE PROCEDURE deleteGenero
@@ -660,7 +647,6 @@ BEGIN
 	WHERE GENERO.GeneroID = @GeneroID;
 END;
 
-EXEC deleteGenero 4;
 
 GO
 CREATE PROCEDURE updateGenero
@@ -677,13 +663,6 @@ BEGIN
         GeneroID = @GeneroID;
 END;
 
-EXEC updateGenero
-	4,N'Tarantulino';
-
-SELECT*
-FROM Persona.GENERO;
-
-/*########### procedures de Profesion ##############*/
 
 GO
 CREATE PROCEDURE insertarProfesion
@@ -697,9 +676,6 @@ BEGIN
     (@descripcion);
 END;
 
---DROP PROCEDURE IF EXISTS insertarProfesion; --ODIO A LUIS
-
-EXEC insertarProfesion 'Estudiante'
 
 GO
 CREATE PROCEDURE deleteProfesion
@@ -711,8 +687,6 @@ BEGIN
     DELETE FROM Persona.PROFESION
 	WHERE Persona.PROFESION.Profesion_ID = @GeneroID;
 END;
-
-EXEC deleteProfesion 11;
 
 GO
 CREATE PROCEDURE updateProfesion
@@ -727,12 +701,10 @@ BEGIN
 	WHERE Persona.PROFESION.Profesion_ID = @profesionID;
 END;
 
-EXEC updateProfesion 12,N'EstudiantePrueba'
 
 SELECT*
 FROM Persona.PROFESION
 
-/*############### Pocedures de Estado Civil ###############*/
 
 GO
 CREATE PROCEDURE insertarEstadoCivil
@@ -746,9 +718,6 @@ BEGIN
     (@descripcion)
 END;
 
-EXEC insertarEstadoCivil N'nunca tan soltero';
-
-
 
 GO
 CREATE PROCEDURE deleteEstadoCivil
@@ -761,7 +730,6 @@ BEGIN
 	WHERE Persona.ESTADO_CIVIL.EstadoCivil_ID=@estadoID
 END;
 
-EXEC deleteEstadoCivil 10;
 
 GO
 CREATE PROCEDURE updateEstadoCivil
@@ -776,7 +744,6 @@ BEGIN
 	WHERE Persona.ESTADO_CIVIL.EstadoCivil_ID=@estadoID
 END;
 
-EXEC updateEstadoCivil 11,N'nunca tan soltero prueba';
 
 SELECT*
 FROM Persona.ESTADO_CIVIL
@@ -794,7 +761,7 @@ VALUES
 (@descripcion)
 END;
 
-EXEC insertActividadEconomica N'Narcotrafico'
+
 	
 GO
 CREATE PROCEDURE deleteActividadEconomica
@@ -807,7 +774,7 @@ BEGIN
 	WHERE persona.ACTIVIDAD_ECONOMICA.ActividadEconomica_ID=@actividadID
 END;
 
-EXEC deleteActividadEconomica 11;
+
 
 GO
 CREATE PROCEDURE updateActividadEconomica
@@ -822,8 +789,132 @@ BEGIN
 	WHERE ActividadEconomica_ID=@ActividadID
 END;
 
-EXEC updateActividadEconomica 12,N'NarcoTrafico prueba'
 
-SELECT*
-FROM Persona.ACTIVIDAD_ECONOMICA
 
+--Metodos para borrar persona
+
+
+GO
+CREATE PROCEDURE deleteMecanismoPorEstado
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE EPM
+    FROM Contacto.MECANISMO_POR_ESTADO AS EPM
+	INNER JOIN Contacto.MECANISMO_DE_CONTACTO AS MC
+	ON (EPM.Mec_ContactoID=MC.Mec_ContactoID)
+    WHERE MC.PersonaID = @personaID;
+END;
+
+GO
+CREATE PROCEDURE deleteCliente
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE FROM persona.CLIENTE
+    WHERE Persona.CLIENTE.PersonaID=@personaID
+END;
+
+GO
+CREATE PROCEDURE deleteDocumento_Identidad
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE FROM persona.DOCUMENTO_IDENTIDAD
+    WHERE Persona.DOCUMENTO_IDENTIDAD.PersonaID=@personaID
+END;
+
+GO
+CREATE PROCEDURE deleteMecanismo_Contacto
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE FROM contacto.MECANISMO_DE_CONTACTO
+    WHERE Contacto.MECANISMO_DE_CONTACTO.PersonaID=@personaID
+END;
+
+GO
+CREATE PROCEDURE deleteSitio_web
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE FROM Contacto.SITIO_WEB
+    WHERE Contacto.SITIO_WEB.PersonaID=@personaID
+END;
+
+
+GO
+CREATE PROCEDURE deleteIngresos
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE FROM persona.INGRESOS
+    WHERE Persona.INGRESOS.PersonaID=@personaID
+END;
+
+GO
+CREATE PROCEDURE deleteDireccion
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE FROM persona.DIRECCION
+    WHERE Persona.DIRECCION.PersonaID=@personaID
+END;
+
+GO
+CREATE PROCEDURE deleteHistorial_Estado_Civil
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE FROM Historial.HISTORIAL_ESTADO_CIVIL
+    WHERE Historial.HISTORIAL_ESTADO_CIVIL.PersonaID=@personaID
+END;
+
+GO
+CREATE PROCEDURE deleteRespuesta
+(
+    @personaID SMALLINT
+)
+AS
+BEGIN
+    DELETE FROM Respuesta.RESPUESTA
+    WHERE Respuesta.RESPUESTA.PersonaID=@personaID
+END;
+
+
+GO
+CREATE PROCEDURE deletePersona
+(
+	@personaID SMALLINT
+)
+AS
+BEGIN
+	EXEC deleteRespuesta @personaID;
+	EXEC deleteHistorial_Estado_Civil @personaID;
+	EXEC deleteDireccion @personaID;
+	EXEC deleteDocumento_Identidad @personaID;
+	EXEC deleteIngresos @personaID;
+	EXEC deletecliente @personaID;
+	EXEC deleteSitio_web @personaID;
+	EXEC deleteMecanismoPorEstado @personaID;
+	EXEC deleteMecanismo_Contacto @personaID;
+
+	DELETE FROM Persona.PERSONA
+	WHERE Persona.PersonaID=@personaID
+END;
