@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", (event) => {
     const registerBtn = document.querySelector(".registerBtn"),
-    showBtns = document.querySelectorAll(".showBtn"),
-    deleteBtns = document.querySelectorAll(".deleteBtn"),
-    editBtns = document.querySelectorAll(".editBtn"),
-    homeBtn = document.querySelector(".homeBtn");
+        showBtns = document.querySelectorAll(".showBtn"),
+        deleteBtns = document.querySelectorAll(".deleteBtn"),
+        editBtns = document.querySelectorAll(".editBtn");
 
     registerBtn.addEventListener("click", () => {
         window.location.href = "./register";
@@ -31,11 +30,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 });
             }
         });
-    });
-
-    homeBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.href = '/';
     });
 
     editBtns.forEach(editBtn => {
