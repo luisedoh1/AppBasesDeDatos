@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label for="fechaNacimiento">Date of Birth:</label>
                     <input type="date" id="fechaNacimiento" name="fechaNacimiento"
-                        value="<%= client.Fecha_Nacimiento ? client.fechaNacimiento.toISOString().split('T')[0] : '' %>"
+                        value="<%= client.fechaNacimiento ? client.fechaNacimiento.toISOString().split('T')[0] : ''%>"
                         required>
                 </div>
 
@@ -78,7 +78,7 @@
             </div>
         </form>
     </div>
-    <script src="/clients/<%= client.PersonID %>/edit-script.js"></script>
+    <script src="/clients/<%= client.PersonaID %>/edit-script.js"></script>
 </body>
 
 </html>

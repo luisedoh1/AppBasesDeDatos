@@ -14,7 +14,7 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../public"));
 
-const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost\\SQLEXPRESS;Database=Base_Proyecto;Trusted_Connection=yes;`;
+const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=Base_Proyecto;Trusted_Connection=yes;`;
 
 const config = {
     connectionString: connectionString,
@@ -98,6 +98,10 @@ sql
             }
         });
 
+
+        
+
+        /*
         // Add a new endpoint for the address form submission
         app.post("/api/address", async (req, res) => {
             const {PersonID, Street, City, State, Country, PostalCode} = req.body;
@@ -131,7 +135,8 @@ sql
                 console.error("SQL error", err);
                 res.status(500).send("Error saving address: " + err.message);
             }
-        });
+        });*/
+
 
         app.get("/", async (req, res) => {
             const pageSize = 10;
@@ -186,21 +191,16 @@ sql
         }
 
         app.post("/clients/:id/delete", async (req, res) => {
-            const personID = req.params.id;
+            const personaID = req.params.id;
             let transaction;
 
             try {
                 transaction = new sql.Transaction();
                 await transaction.begin();
-                const deleteIdentificationRequest = new sql.Request(transaction);
-                await deleteIdentificationRequest
-                    .input("PersonID", sql.Int, personID)
-                    .query("DELETE FROM Identification WHERE PersonID = @PersonID");
-
                 const deletePersonRequest = new sql.Request(transaction);
                 await deletePersonRequest
-                    .input("PersonID", sql.Int, personID)
-                    .query("DELETE FROM Person WHERE PersonID = @PersonID");
+                    .input("personaID", sql.Int, personaID)
+                    .query("EXEC deletePersona @personaID");
 
                 await transaction.commit();
                 res.redirect("/");

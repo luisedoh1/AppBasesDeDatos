@@ -25,9 +25,10 @@ CREATE TABLE Tipo.TIPO_PERSONA --Tipo PERSONA (JURIDICA)(FISICA)(PYME)
 	CONSTRAINT PK_Tipo_Persona PRIMARY KEY(Tipo_PersonaID),
 );
 
+
 INSERT INTO Tipo.TIPO_PERSONA(Nombre_Tipo_Persona)
-VALUES (N'Jurídica'),
-	   (N'Física'),
+VALUES (N'Jurï¿½dica'),
+	   (N'Fï¿½sica'),
 	   (N'PYME');
 
 CREATE TABLE Persona.GENERO
@@ -53,9 +54,9 @@ CREATE TABLE Persona.PROFESION
 INSERT INTO Persona.PROFESION (Descripcion)
 VALUES
     ('Ingeniero de Software'),
-    ('Médico'),
+    ('Mï¿½dico'),
     ('Abogado'),
-    ('Diseñador Gráfico'),
+    ('Diseï¿½ador Grï¿½fico'),
     ('Contador'),
     ('Profesor'),
     ('Arquitecto'),
@@ -99,6 +100,24 @@ CREATE TABLE Persona.NIVEL_ACADEMICO_MAX
     CONSTRAINT FK_NIVEL_PROFESIONAL FOREIGN KEY (Nivel_ProfesionID) REFERENCES Persona.NIVEL_PROFESIONAL (Nivel_ProfesionID)
 );
 
+-- Insertar datos en la tabla Persona.NIVEL_ACADEMICO_MAX
+INSERT INTO Persona.NIVEL_ACADEMICO_MAX (Nivel_ProfesionID, Descripcion) VALUES
+(1, 'Licenciatura en Ingenierï¿½a Civil - Junior'),
+(1, 'Licenciatura en Ingenierï¿½a Civil - Middle'),
+(1, 'Licenciatura en Ingenierï¿½a Civil - Senior'),
+(2, 'Maestrï¿½a en Ciencias de la Computaciï¿½n - Interno'),
+(2, 'Maestrï¿½a en Ciencias de la Computaciï¿½n - Residente'),
+(2, 'Maestrï¿½a en Ciencias de la Computaciï¿½n - Jefe'),
+(3, 'Doctorado en Medicina - Interno'),
+(3, 'Doctorado en Medicina - Residente'),
+(3, 'Doctorado en Medicina - Jefe'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Asociado'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Asociado Senior'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Socio Gerente'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Principiante'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Senior'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Director');
+
 CREATE TABLE Persona.ACTIVIDAD_ECONOMICA
 (
     ActividadEconomica_ID TINYINT IDENTITY (1,1),
@@ -108,16 +127,16 @@ CREATE TABLE Persona.ACTIVIDAD_ECONOMICA
 
 INSERT INTO Persona.ACTIVIDAD_ECONOMICA (Descripcion)
 VALUES
-    ('Desarrollo de software y servicios informáticos'),
-    ('Consultoría empresarial'),
-    ('Restaurante o cafetería'),
-    ('Venta al por menor de productos electrónicos'),
-    ('Servicios de contabilidad y asesoría fiscal'),
-    ('Construcción y obras civiles'),
-    ('Servicios de diseño gráfico y publicidad'),
-    ('Consultoría en recursos humanos'),
+    ('Desarrollo de software y servicios informï¿½ticos'),
+    ('Consultorï¿½a empresarial'),
+    ('Restaurante o cafeterï¿½a'),
+    ('Venta al por menor de productos electrï¿½nicos'),
+    ('Servicios de contabilidad y asesorï¿½a fiscal'),
+    ('Construcciï¿½n y obras civiles'),
+    ('Servicios de diseï¿½o grï¿½fico y publicidad'),
+    ('Consultorï¿½a en recursos humanos'),
     ('Venta al por mayor de alimentos y bebidas'),
-    ('Servicios de transporte y logística');
+    ('Servicios de transporte y logï¿½stica');
 
 CREATE TABLE Persona.PERSONA 
 (
@@ -142,6 +161,34 @@ CREATE TABLE Persona.PERSONA
 	CONSTRAINT FK_Profesion FOREIGN KEY (Profesion_ID) REFERENCES Persona.PROFESION(Profesion_ID)
 );
 
+-- Insertar datos en la tabla Persona.PERSONA
+INSERT INTO Persona.PERSONA (
+    Primer_Nombre,
+    Segundo_Nombre,
+    Primer_Apellido,
+    Segundo_Apellido,
+    Fecha_Nacimiento,
+    Lugar_Nacimiento,
+    Numero_Dependientes,
+    Tipo_PersonaID,
+    GeneroID,
+    ActividadEconomica_ID,
+    Profesion_ID,
+    Estado_Vivo,
+    Fecha_Defuncion
+) VALUES
+('Juan', 'Carlos', 'Gï¿½mez', 'Pï¿½rez', '1990-05-15', 'Ciudad de Mï¿½xico', 2, 1, 1, 3, 5, 1, NULL),
+('Marï¿½a', 'Isabel', 'Martï¿½nez', 'Lï¿½pez', '1985-08-22', 'Guadalajara', 1, 2, 2, 2, 8, 1, NULL),
+('Pedro', NULL, 'Ramï¿½rez', 'Hernï¿½ndez', '1978-12-10', 'Monterrey', 3, 1, 1, 4, 7, 1, NULL),
+('Ana', 'Luisa', 'Dï¿½az', 'Gutiï¿½rrez', '1995-04-03', 'Puebla', 0, 2, 2, 1, 10, 1, NULL),
+('Luis', 'Alberto', 'Hernï¿½ndez', 'Rodrï¿½guez', '1982-06-18', 'Tijuana', 1, 1, 1, 6, 2, 1, NULL),
+('Elena', 'Beatriz', 'Torres', 'Sï¿½nchez', '1998-09-27', 'Veracruz', 2, 2, 2, 5, 9, 1, NULL),
+('Ricardo', NULL, 'Garcï¿½a', 'Martï¿½nez', '1975-03-14', 'Cancï¿½n', 4, 1, 1, 2, 4, 1, NULL),
+('Laura', 'Patricia', 'Flores', 'Ortega', '1991-11-08', 'Oaxaca', 1, 2, 2, 3, 6, 1, NULL),
+('Javier', NULL, 'Ruï¿½z', 'Soto', '1987-07-02', 'Mï¿½rida', 2, 1, 1, 4, 8, 1, NULL),
+('Isabel', 'Cristina', 'Guzmï¿½n', 'Vargas', '1980-02-20', 'Acapulco', 3, 2, 2, 1, 5, 1, NULL);
+
+
 CREATE TABLE Persona.CLIENTE
 (
 	ClienteID SMALLINT IDENTITY (1,1),
@@ -151,18 +198,19 @@ CREATE TABLE Persona.CLIENTE
 	CONSTRAINT FK_Cliente_Personas_ID FOREIGN KEY (PersonaID) REFERENCES Persona.PERSONA(PersonaID)
 );
 
---INSERT INTO CLIENTE (Numero_Empleados) Cambiar Insert
---VALUES
---    (5),
---    (0),
---    (100),
---    (30),
---    (35),
---    (15),
---    (200),
---    (10),
---    (0),
---    (2);
+-- Insertar datos en la tabla Persona.CLIENTE
+INSERT INTO Persona.CLIENTE (PersonaID, Numero_Empleados) VALUES
+(1, 50),
+(2, 120),
+(3, 300),
+(4, 10),
+(5, 75),
+(6, 200),
+(7, 15),
+(8, 80),
+(9, 50),
+(10, 150);
+
 
 CREATE TABLE GEO.PAIS
 (
@@ -175,22 +223,22 @@ INSERT INTO GEO.PAIS (Nombre)
 VALUES
     ('Costa Rica')
 	,('Estados Unidos')
-	,('Canadá')
-	,('México')
+	,('Canadï¿½')
+	,('Mï¿½xico')
 	,('Brasil')
 	,('Argentina')
-	,('España')
+	,('Espaï¿½a')
 	,('Francia')
 	,('Alemania')
 	,('Italia')
 	,('China')
-	,('Japón')
+	,('Japï¿½n')
 	,('India')
 	,('Australia')
-	,('Sudáfrica')
+	,('Sudï¿½frica')
 	,('Egipto')
 	,('Rusia')
-	,('Turquía')
+	,('Turquï¿½a')
 	,('Reino Unido')
 	,('Corea del Sur');
 
@@ -203,7 +251,7 @@ CREATE TABLE Tipo.TIPO_DOCUMENTO
 
 INSERT INTO Tipo.TIPO_DOCUMENTO(Nombre_TipoDocumento)
 VALUES (N'Pasaporte'),
-	   (N'Cédula'),
+	   (N'Cï¿½dula'),
 	   (N'DIMEX')
 ;
 
@@ -221,6 +269,18 @@ CREATE TABLE Persona.DOCUMENTO_IDENTIDAD
 	CONSTRAINT FK_Pais_Documento FOREIGN KEY (PaisID) REFERENCES GEO.PAIS(PaisID)
 );
 
+-- Insertar datos en la tabla Persona.DOCUMENTO_IDENTIDAD
+INSERT INTO Persona.DOCUMENTO_IDENTIDAD (PersonaID, Tipo_DocumentoID, Valor, Fecha_Emision, Fecha_Expiracion, PaisID) VALUES
+(1, 1, 123456789, '2020-01-01', '2030-01-01', 1),
+(2, 2, 987654321, '2019-05-15', '2029-05-15', 2),
+(3, 1, 555111333, '2022-03-10', '2032-03-10', 3),
+(4, 3, 777888999, '2021-08-20', '2031-08-20', 1),
+(5, 2, 111222333, '2023-02-28', '2033-02-28', 4),
+(6, 1, 999888777, '2020-11-05', '2030-11-05', 2),
+(7, 3, 444555666, '2018-06-12', '2028-06-12', 5),
+(8, 2, 666777888, '2017-09-30', '2027-09-30', 3),
+(9, 1, 222333444, '2019-04-15', '2029-04-15', 4),
+(10, 3, 888999000, '2022-07-25', '2032-07-25', 5);
 
 CREATE TABLE Tipo.TIPO_CONTACTO
 (
@@ -252,6 +312,28 @@ CREATE TABLE Contacto.MECANISMO_DE_CONTACTO
 	CONSTRAINT FK_Tipo_MecContacto FOREIGN KEY(Tipo_ContactoID) REFERENCES Tipo.TIPO_CONTACTO(Tipo_ContactoID)
 );
 
+-- Insertar datos en la tabla Contacto.MECANISMO_DE_CONTACTO
+INSERT INTO Contacto.MECANISMO_DE_CONTACTO (
+    Valor,
+    Instruccion,
+    Prioridad,
+    Codigo_Pais,
+    Codigo_Area,
+    Solicitado,
+    PersonaID,
+    Tipo_ContactoID
+) VALUES
+(123456789, 'Llamar despuï¿½s de las 5 PM', 1, 1, 2, 1, 1, 1),
+(987654321, 'Enviar un correo electrï¿½nico', 2, 2, 3, 0, 2, 2),
+(555111333, 'SMS preferido', 3, 3, 4, 1, 3, 3),
+(777888999, 'Contactar solo en emergencias', 1, 1, 2, 0, 4, 1),
+(111222333, 'Disponible para videollamadas', 2, 2, 3, 1, 5, 2),
+(999888777, 'Llamar en horario laboral', 3, 3, 4, 0, 6, 3),
+(444555666, 'Correo electrï¿½nico secundario', 1, 1, 2, 1, 7, 1),
+(666777888, 'Llamada urgente', 2, 2, 3, 0, 8, 2),
+(222333444, 'SMS preferido', 3, 3, 4, 1, 9, 3),
+(888999000, 'Contacto preferido por videollamada', 1, 1, 2, 1, 10, 1);
+
 CREATE TABLE Contacto.ESTADO_MECANISMO 
 (
 	Estado_ID SMALLINT IDENTITY(1,1), --Llave primaria
@@ -277,6 +359,19 @@ CREATE TABLE Contacto.MECANISMO_POR_ESTADO
 
 );
 
+-- Insertar datos en la tabla Contacto.MECANISMO_POR_ESTADO
+INSERT INTO Contacto.MECANISMO_POR_ESTADO (Fecha_Inicio, Fecha_Final, Estado_ID, Mec_ContactoID) VALUES
+('2022-01-01', '2024-12-31', 1, 1),
+('2022-01-01', '2024-12-31', 2, 2),
+('2022-01-01', '2024-12-31', 3, 3),
+('2022-01-01', '2024-12-31', 1, 4),
+('2022-01-01', '2024-12-31', 2, 5),
+('2022-01-01', '2024-12-31', 3, 6),
+('2022-01-01', '2024-12-31', 1, 7),
+('2022-01-01', '2024-12-31', 2, 8),
+('2022-01-01', '2024-12-31', 3, 9),
+('2022-01-01', '2024-12-31', 1, 10);
+
 
 CREATE TABLE Contacto.SITIO_WEB
 (
@@ -287,6 +382,11 @@ CREATE TABLE Contacto.SITIO_WEB
     PersonaID SMALLINT NOT NULL,
     CONSTRAINT FK_TipoPersonaID_Documento FOREIGN KEY (PersonaID) REFERENCES Persona.PERSONA(PersonaID)
 );
+
+-- Insertar datos en la tabla Contacto.SITIO_WEB
+INSERT INTO Contacto.SITIO_WEB ([URL], Nombre, FechaCreacion, PersonaID) VALUES
+('http://www.ejemplo1.com', 'Ejemplo 1', '2022-01-01', 1),
+('http://www.ejemplo2.com', 'Ejemplo 2', '2022-02-15', 2);
 
 
 CREATE TABLE Moneda.MONEDA
@@ -353,7 +453,7 @@ VALUES   ('Salario')
 		,('Ventas')
 		,('Alquiler')
 		,('Prestamos')
-		,('Regalías')
+		,('Regalï¿½as')
 		,('Subsidios')
 		,('Premios')
 		,('Otros Ingresos')
@@ -373,17 +473,19 @@ CREATE TABLE Persona.INGRESOS
 	CONSTRAINT FK_Persona_Ingreso FOREIGN KEY(PersonaID) REFERENCES Persona.PERSONA(PersonaID)
 );
 
-/*INSERT INTO Persona.INGRESOS(MonedaID, Monto, Descripcion, TipoIngresoID, PersonaID) --Error--
-VALUES   (2, 5000, 'Salario mensual', 1, 1)
-		,(2, 800, 'Honorarios por consultoría', 2, 2)
-		,(2, 12000, 'Ingresos por inversiones', 3, 3)
-		,(2, 1500, 'Ventas de productos', 4, 4)
-		,(2, 1000, 'Alquiler de propiedad', 5, 5)
-		,(4, 2000, 'Préstamo recibido', 6, 6)
-		,(2, 300, 'Regalías por propiedad intelectual', 7, 7)
-		,(2, 500, 'Subsidio gubernamental', 8, 8)
-		,(2, 400, 'Otros ingresos varios', 9, 9)
-		,(2, 100, 'Premio ganado', 10, 10);*/
+-- Insertar datos en la tabla Persona.INGRESOS
+INSERT INTO Persona.INGRESOS (MonedaID, Monto, Descripcion, TipoIngresoID, PersonaID) VALUES
+(1, 5000.00, 'Salario mensual', 1, 1),
+(2, 800.50, 'Ingresos por alquiler', 2, 2),
+(1, 12000.75, 'Bonificaciï¿½n anual', 3, 3),
+(2, 3000.00, 'Ingresos por servicios profesionales', 1, 4),
+(1, 600.25, 'Ingresos por ventas', 2, 5),
+(2, 7000.50, 'Honorarios por consultorï¿½a', 3, 6),
+(1, 4500.75, 'Ingresos por freelance', 1, 7),
+(2, 900.00, 'Ingresos por alquiler de propiedad', 2, 8),
+(1, 5500.25, 'Salario mensual', 3, 9),
+(2, 1500.50, 'Ingresos por servicios tï¿½cnicos', 1, 10);
+
 
 CREATE TABLE Tipo.TIPO_DIRECCION
 (
@@ -396,7 +498,7 @@ INSERT INTO Tipo.TIPO_DIRECCION (Descripcion)
 VALUES
     ('Hogar'),
     ('Trabajo'),
-    ('Dirección Temporal'), 
+    ('Direcciï¿½n Temporal'), 
     ('Otro');
 
 CREATE TABLE GEO.DIVISION_GEO
@@ -409,7 +511,7 @@ CREATE TABLE GEO.DIVISION_GEO
 INSERT INTO GEO.DIVISION_GEO (Descripcion)
 VALUES
     ('Provincia'),
-    ('Cantón'),
+    ('Cantï¿½n'),
     ('Ciudad'),
     ('Distrito');
 
@@ -418,14 +520,28 @@ CREATE TABLE GEO.GEO
 	GeoID SMALLINT IDENTITY(1,1), --Llave Primaria
 	Nombre VARCHAR (250),
 	DireccionID SMALLINT NOT NULL,
-	Sub_GeoID SMALLINT,
+	Sup_GeoID SMALLINT,
 	Tipo_GeoID SMALLINT NOT NULL,
 	PaisID SMALLINT NOT NULL
 	CONSTRAINT PK_Geo PRIMARY KEY(GeoID),
-	CONSTRAINT FK_Geo FOREIGN KEY(Sub_GeoID)REFERENCES GEO.GEO(GeoID),
+	CONSTRAINT FK_Geo FOREIGN KEY(Sup_GeoID)REFERENCES GEO.GEO(GeoID),
 	CONSTRAINT FK_Div_Geo FOREIGN KEY(Tipo_GeoID)REFERENCES GEO.DIVISION_GEO(Tipo_GeoID),
 	CONSTRAINT FK_Pais_Geo FOREIGN KEY (PaisID) REFERENCES GEO.PAIS(PaisID)
 );
+
+-- Insertar datos en la tabla GEO.GEO
+INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
+('San Josï¿½', 21, NULL, 1, 8), -- Provincia
+('Heredia', 22, NULL, 1, 8), -- Provincia
+('Guanacaste', 23, NULL, 1, 8), -- Provincia
+('San Josï¿½', 24, 21, 2, 8), -- Cantï¿½n (pertenece a San Josï¿½)
+('Heredia', 25, 22, 2, 8), -- Cantï¿½n (pertenece a Heredia)
+('Liberia', 26, 23, 2, 8), -- Cantï¿½n (pertenece a Guanacaste)
+('San Pedro', 27, 24, 3, 8), -- Ciudad (pertenece a San Josï¿½)
+('Heredia Centro', 28, 25, 3, 8), -- Ciudad (pertenece a Heredia)
+('Playas del Coco', 29, 26, 3, 8), -- Ciudad (pertenece a Liberia)
+('Barrio Amon', 30, 27, 4, 8); -- Distrito (pertenece a San Pedro)
+
 
 CREATE TABLE Persona.DIRECCION
 (
@@ -447,6 +563,32 @@ CREATE TABLE Persona.DIRECCION
 	CONSTRAINT FK_Tipo_Direccion FOREIGN KEY(Tipo_DireccionID) REFERENCES Tipo.TIPO_DIRECCION(Tipo_DireccionID)
 );
 
+-- Insertar datos en la tabla Persona.DIRECCION
+INSERT INTO Persona.DIRECCION (
+    Tipo_DireccionID,
+    LineaDireccion1,
+    LineaDireccion2,
+    CodigoPostal,
+    CodigoRegion,
+    ZIP,
+    Solicitado,
+    Intrsucciones,
+    Prioridad,
+    PersonaID,
+    GeoID
+) VALUES
+(1, 'Calle Principal 123', 'Apartamento 4B', 12345, 1, 54321, 1, 'Frente al parque', 1, 1, 1), -- Direcciï¿½n 1
+(2, 'Avenida Central 456', NULL, 54321, 2, 98765, 0, 'Edificio Azul, Piso 8', 2, 2, 2), -- Direcciï¿½n 2
+(3, 'Calle Sur 789', 'Casa 10', 67890, 3, 12345, 1, 'Esquina de la iglesia', 1, 3, 3), -- Direcciï¿½n 3
+(1, 'Calle Este 321', 'Apartamento 5A', 54321, 1, 87654, 0, 'Frente al supermercado', 2, 4, 4), -- Direcciï¿½n 4
+(2, 'Avenida Oeste 654', NULL, 98765, 2, 23456, 1, 'Edificio Rojo, Piso 12', 1, 5, 5), -- Direcciï¿½n 5
+(3, 'Calle Norte 987', 'Casa 20', 23456, 3, 76543, 0, 'Al lado del parque', 2, 6, 6), -- Direcciï¿½n 6
+(1, 'Avenida Principal 111', 'Apartamento 6C', 87654, 1, 34567, 1, 'Frente al cine', 1, 7, 7), -- Direcciï¿½n 7
+(2, 'Calle Secundaria 222', NULL, 23456, 2, 45678, 0, 'Edificio Amarillo, Piso 5', 2, 8, 8), -- Direcciï¿½n 8
+(3, 'Avenida Trasera 333', 'Casa 30', 76543, 3, 56789, 1, 'Detrï¿½s del mercado', 1, 9, 9), -- Direcciï¿½n 9
+(1, 'Calle Escondida 444', 'Apartamento 7D', 34567, 1, 67890, 0, 'Frente a la escuela', 2, 10, 10); -- Direcciï¿½n 10
+
+
 CREATE TABLE Persona.ESTADO_CIVIL
 (
 	EstadoCivil_ID SMALLINT IDENTITY(1,1) NOT NULL,
@@ -462,7 +604,7 @@ VALUES
 	,('Viudo/a')
 	,('Separado/a')
 	,('Comprometido/a')
-	,('Unión libre')
+	,('Uniï¿½n libre')
 	,('No especificado')
 	,('Otro');
 
@@ -478,6 +620,19 @@ CREATE TABLE Historial.HISTORIAL_ESTADO_CIVIL
 	CONSTRAINT FK_Historial_Persona FOREIGN KEY(PersonaID) REFERENCES Persona.PERSONA(PersonaID)
 );
 
+-- Insertar datos en la tabla Historial.HISTORIAL_ESTADO_CIVIL
+INSERT INTO Historial.HISTORIAL_ESTADO_CIVIL (EstadoCivil_ID, Fecha_Inicio, Fecha_Final, PersonaID) VALUES
+(1, '2020-01-01', '2022-03-15', 1), -- Persona 1
+(2, '2019-05-15', '2021-11-30', 2), -- Persona 2
+(3, '2022-03-10', NULL, 3), -- Persona 3
+(1, '2021-08-20', NULL, 4), -- Persona 4
+(2, '2023-02-28', NULL, 5), -- Persona 5
+(3, '2020-11-05', NULL, 6), -- Persona 6
+(1, '2018-06-12', '2022-02-01', 7), -- Persona 7
+(2, '2017-09-30', '2020-12-31', 8), -- Persona 8
+(3, '2019-04-15', NULL, 9), -- Persona 9
+(1, '2022-07-25', NULL, 10); -- Persona 10
+
 CREATE TABLE Respuesta.PREGUNTA
 (
 	PreguntaID SMALLINT IDENTITY (1,1), --Llave Primaria
@@ -487,8 +642,8 @@ CREATE TABLE Respuesta.PREGUNTA
 
 INSERT INTO Respuesta.PREGUNTA (Descripcion)
 VALUES
-    ('¿Posee vehículos?'),
-    ('¿Posee propiedades?');
+    ('ï¿½Posee vehï¿½culos?'),
+    ('ï¿½Posee propiedades?');
 
 CREATE TABLE Respuesta.RESPUESTA
 (
@@ -500,6 +655,38 @@ CREATE TABLE Respuesta.RESPUESTA
 	CONSTRAINT FK_Respuesta_Persona FOREIGN KEY(PersonaID) REFERENCES Persona.PERSONA(PersonaID),
 	CONSTRAINT FK_Respuesta_Pregunta FOREIGN KEY(PreguntaID) REFERENCES Respuesta.PREGUNTA(PreguntaID)
 );
+
+-- Insertar datos en la tabla Respuesta.RESPUESTA
+INSERT INTO Respuesta.RESPUESTA (Respuesta, PersonaID, PreguntaID) VALUES
+('Sï¿½', 1, 1), -- ï¿½Posee vehï¿½culos? - Persona 1
+('No', 1, 2), -- ï¿½Posee propiedades? - Persona 1
+
+('Sï¿½', 2, 1), -- ï¿½Posee vehï¿½culos? - Persona 2
+('Sï¿½', 2, 2), -- ï¿½Posee propiedades? - Persona 2
+
+('No', 3, 1), -- ï¿½Posee vehï¿½culos? - Persona 3
+('Sï¿½', 3, 2), -- ï¿½Posee propiedades? - Persona 3
+
+('Sï¿½', 4, 1), -- ï¿½Posee vehï¿½culos? - Persona 4
+('No', 4, 2), -- ï¿½Posee propiedades? - Persona 4
+
+('No', 5, 1), -- ï¿½Posee vehï¿½culos? - Persona 5
+('No', 5, 2), -- ï¿½Posee propiedades? - Persona 5
+
+('Sï¿½', 6, 1), -- ï¿½Posee vehï¿½culos? - Persona 6
+('Sï¿½', 6, 2), -- ï¿½Posee propiedades? - Persona 6
+
+('No', 7, 1), -- ï¿½Posee vehï¿½culos? - Persona 7
+('Sï¿½', 7, 2), -- ï¿½Posee propiedades? - Persona 7
+
+('Sï¿½', 8, 1), -- ï¿½Posee vehï¿½culos? - Persona 8
+('No', 8, 2), -- ï¿½Posee propiedades? - Persona 8
+
+('No', 9, 1), -- ï¿½Posee vehï¿½culos? - Persona 9
+('Sï¿½', 9, 2), -- ï¿½Posee propiedades? - Persona 9
+
+('Sï¿½', 10, 1), -- ï¿½Posee vehï¿½culos? - Persona 10
+('Sï¿½', 10, 2); -- ï¿½Posee propiedades? - Persona 10
 
 
 -- Esquema Homologacion --
