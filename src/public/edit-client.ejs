@@ -55,8 +55,8 @@
             <div class="form-group">
                 <label for="tipoPersona">Person Type:</label>
                 <select id="tipoPersona" name="tipoPersona" required>
-                    <% ['Juridica', 'Fisica', 'PYME'].forEach((type, index) => { %>
-                        <option value="<%= index + 1 %>" <%= client.Tipo_PersonaID === String(index + 1) ? 'selected' : '' %>><%= type %></option>
+                    <% personaTipos.forEach(personaTipo => { %>
+                        <option value="<%= personaTipo.Tipo_PersonaID %>" <%= client.Tipo_PersonaID === personaTipo.Tipo_PersonaID ? 'selected' : '' %>><%= personaTipo.Nombre_Tipo_Persona %></option>
                     <% }); %>
                 </select>
             </div>

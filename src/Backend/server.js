@@ -14,7 +14,7 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../public"));
 
-const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost\\SQLEXPRESS;Database=Base_Proyecto;Trusted_Connection=yes;`;
+const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=Base_Proyecto;Trusted_Connection=yes;`;
 
 const config = {
     connectionString: connectionString,
@@ -232,8 +232,11 @@ sql
                 const gendersResult = await request.query("SELECT GeneroID, Descripcion FROM Persona.GENERO");
                 const genders = gendersResult.recordset;
 
+                const personaResult = await request.query("SELECT Tipo_PersonaID, Nombre_Tipo_Persona FROM Tipo.TIPO_PERSONA");
+                const personaTipos = personaResult.recordset;
+
                 // Pass the client, professions, and genders to the template
-                res.render("edit-client", { client, professions, genders });
+                res.render("edit-client", { client, professions, genders, personaTipos });
             } catch (error) {
                 console.error("Failed to fetch client for editing:", error);
                 res.status(500).send("An error occurred while fetching the client for editing.");

@@ -350,7 +350,7 @@ CREATE TABLE Contacto.MECANISMO_POR_ESTADO
 (
 	Mecanismo_EstadoID SMALLINT IDENTITY(1,1) NOT NULL,
 	Fecha_Inicio DATE NOT NULL,
-	Fecha_Final DATE NOT NULL,
+	Fecha_Final DATE,
 	Estado_ID SMALLINT NOT NULL,
 	Mec_ContactoID SMALLINT NOT NULL,
 	CONSTRAINT PK_Estado_Mec PRIMARY KEY(Mecanismo_EstadoID),
@@ -361,16 +361,16 @@ CREATE TABLE Contacto.MECANISMO_POR_ESTADO
 
 -- Insertar datos en la tabla Contacto.MECANISMO_POR_ESTADO
 INSERT INTO Contacto.MECANISMO_POR_ESTADO (Fecha_Inicio, Fecha_Final, Estado_ID, Mec_ContactoID) VALUES
-('2022-01-01', '2024-12-31', 1, 1),
+('2022-01-01', NULL, 1, 1),
 ('2022-01-01', '2024-12-31', 2, 2),
-('2022-01-01', '2024-12-31', 3, 3),
+('2022-01-01', NULL, 1, 3),
 ('2022-01-01', '2024-12-31', 1, 4),
 ('2022-01-01', '2024-12-31', 2, 5),
-('2022-01-01', '2024-12-31', 3, 6),
-('2022-01-01', '2024-12-31', 1, 7),
+('2022-01-01', '2024-12-31', 2, 6),
+('2022-01-01', NULL, 1, 7),
 ('2022-01-01', '2024-12-31', 2, 8),
-('2022-01-01', '2024-12-31', 3, 9),
-('2022-01-01', '2024-12-31', 1, 10);
+('2022-01-01', NULL, 1, 9),
+('2022-01-01', NULL, 1, 10);
 
 
 CREATE TABLE Contacto.SITIO_WEB
@@ -519,7 +519,6 @@ CREATE TABLE GEO.GEO
 (
 	GeoID SMALLINT IDENTITY(1,1), --Llave Primaria
 	Nombre VARCHAR (250),
-	DireccionID SMALLINT NOT NULL,
 	Sup_GeoID SMALLINT,
 	Tipo_GeoID SMALLINT NOT NULL,
 	PaisID SMALLINT NOT NULL
@@ -530,23 +529,26 @@ CREATE TABLE GEO.GEO
 );
 
 -- Insertar datos en la tabla GEO.GEO
-INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
-('San José', 21, NULL, 1, 8), -- Provincia
-('Heredia', 22, NULL, 1, 8), -- Provincia
-('Guanacaste', 23, NULL, 1, 8);
+INSERT INTO GEO.GEO (Nombre, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
+('San José', NULL, 1, 1), -- Provincia
+('Heredia', NULL, 1, 1), -- Provincia
+('Guanacaste', NULL, 1, 1);
 
-INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
-('San José', 24, 1, 2, 8), -- Cantón (pertenece a San José)
-('Heredia', 25, 2, 2, 8), -- Cantón (pertenece a Heredia)
-('Liberia', 26, 3, 2, 8);
+INSERT INTO GEO.GEO (Nombre, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
+('San José', 1, 2, 1), -- Cantón (pertenece a San José)
+('Heredia', 2, 2, 1), -- Cantón (pertenece a Heredia)
+('Liberia', 3, 2, 1);
 
-INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
-('San Pedro', 27, 1, 3, 8);
+INSERT INTO GEO.GEO (Nombre, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
+('San Pedro', 1, 3, 1);
 
-INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
-('Barva', 27, 13, 3, 8);-- Ciudad (pertenece a San José)
+INSERT INTO GEO.GEO (Nombre, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
+('Barva', 5, 3, 1),
+('Heredia Centro', 5, 3, 1), -- Ciudad (pertenece a Heredia)
+('Playas del Coco', 6, 3, 1); -- Ciudad (pertenece a Liberia)
 
-
+INSERT INTO GEO.GEO (Nombre, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
+('Barrio Amon', 7, 4, 1);
 
 
 
@@ -557,9 +559,9 @@ CREATE TABLE Persona.DIRECCION
 	Tipo_DireccionID SMALLINT NOT NULL,
 	LineaDireccion1 VARCHAR(500) NOT NULL,
 	LineaDireccion2 VARCHAR(500),
-	CodigoPostal SMALLINT NOT NULL,
+	CodigoPostal NVARCHAR(50) NOT NULL,
 	CodigoRegion SMALLINT NOT NULL,
-	ZIP NVARCHAR(50) NOT NULL, --Revisar si el dato esta bien definido--
+	ZIP NVARCHAR(50) NOT NULL, 
 	Solicitado BIT NOT NULL,
 	Instrucciones VARCHAR(500) NOT NULL,
 	Prioridad SMALLINT NOT NULL,
