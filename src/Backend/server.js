@@ -228,7 +228,12 @@ sql
                 const professionsResult = await request.query("SELECT Profesion_ID, Descripcion FROM Persona.PROFESION");
                 const professions = professionsResult.recordset;
 
-                res.render("edit-client", { client, professions });
+                // Fetch the genders from the database
+                const gendersResult = await request.query("SELECT GeneroID, Descripcion FROM Persona.GENERO");
+                const genders = gendersResult.recordset;
+
+                // Pass the client, professions, and genders to the template
+                res.render("edit-client", { client, professions, genders });
             } catch (error) {
                 console.error("Failed to fetch client for editing:", error);
                 res.status(500).send("An error occurred while fetching the client for editing.");

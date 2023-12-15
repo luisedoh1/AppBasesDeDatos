@@ -39,6 +39,14 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="genero">Genero:</label>
+                <select id="genero" name="genero" required>
+                    <% genders.forEach(gender => { %>
+                        <option value="<%= gender.GeneroID %>" <%= client.GeneroID === gender.GeneroID ? 'selected' : '' %>><%= gender.Descripcion %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="fechaNacimiento">Date of Birth:</label>
                 <input type="date" id="fechaNacimiento" name="fechaNacimiento"
                        value="<%= client.Fecha_Nacimiento ? client.Fecha_Nacimiento.toISOString().split('T')[0] : '' %>"
