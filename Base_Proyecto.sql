@@ -1,5 +1,5 @@
---CREATE DATABASE Base_Proyecto;
---USE Base_Proyecto;
+CREATE DATABASE Base_Proyecto;
+USE Base_Proyecto;
 
 GO
 CREATE SCHEMA GEO;
@@ -260,7 +260,7 @@ CREATE TABLE Persona.DOCUMENTO_IDENTIDAD
 	DocumentoID TINYINT IDENTITY (1,1), --Llave Primaria
 	PersonaID SMALLINT,
 	Tipo_DocumentoID TINYINT NOT NULL,
-	Valor SMALLINT NOT NULL,
+	Valor NVARCHAR(50) NOT NULL,
 	Fecha_Emision DATE NOT NULL,
 	Fecha_Expiracion DATE NOT NULL,
 	PaisID SMALLINT
@@ -299,7 +299,7 @@ VALUES ('Celular'),
 CREATE TABLE Contacto.MECANISMO_DE_CONTACTO
 (
 	Mec_ContactoID SMALLINT IDENTITY(1,1) NOT NULL, --Llave Primaria
-	Valor TINYINT NOT NULL,
+	Valor NVARCHAR(50) NOT NULL,
 	Instruccion VARCHAR(500),
 	Prioridad TINYINT NOT NULL,
 	Codigo_Pais TINYINT NOT NULL,
@@ -533,14 +533,14 @@ CREATE TABLE GEO.GEO
 INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
 ('San José', 21, NULL, 1, 8), -- Provincia
 ('Heredia', 22, NULL, 1, 8), -- Provincia
-('Guanacaste', 23, NULL, 1, 8), -- Provincia
+('Guanacaste', 23, NULL, 1, 8);
+
+INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
 ('San José', 24, 21, 2, 8), -- Cantón (pertenece a San José)
 ('Heredia', 25, 22, 2, 8), -- Cantón (pertenece a Heredia)
 ('Liberia', 26, 23, 2, 8), -- Cantón (pertenece a Guanacaste)
-('San Pedro', 27, 24, 3, 8), -- Ciudad (pertenece a San José)
-('Heredia Centro', 28, 25, 3, 8), -- Ciudad (pertenece a Heredia)
-('Playas del Coco', 29, 26, 3, 8), -- Ciudad (pertenece a Liberia)
-('Barrio Amon', 30, 27, 4, 8); -- Distrito (pertenece a San Pedro)
+('San Pedro', 27, 24, 3, 8);-- Ciudad (pertenece a San José)
+
 
 
 CREATE TABLE Persona.DIRECCION
@@ -551,9 +551,9 @@ CREATE TABLE Persona.DIRECCION
 	LineaDireccion2 VARCHAR(500),
 	CodigoPostal SMALLINT NOT NULL,
 	CodigoRegion SMALLINT NOT NULL,
-	ZIP SMALLINT NOT NULL, --Revisar si el dato esta bien definido--
+	ZIP NVARCHAR(50) NOT NULL, --Revisar si el dato esta bien definido--
 	Solicitado BIT NOT NULL,
-	Intrsucciones VARCHAR(500) NOT NULL,
+	Instrucciones VARCHAR(500) NOT NULL,
 	Prioridad SMALLINT NOT NULL,
 	PersonaID SMALLINT NOT NULL,
 	GeoID SMALLINT NOT NULL
@@ -572,7 +572,7 @@ INSERT INTO Persona.DIRECCION (
     CodigoRegion,
     ZIP,
     Solicitado,
-    Intrsucciones,
+    Instrucciones,
     Prioridad,
     PersonaID,
     GeoID
@@ -889,9 +889,6 @@ BEGIN
 END;
 
 
-SELECT*
-FROM Persona.PROFESION
-
 
 GO
 CREATE PROCEDURE insertarEstadoCivil
@@ -931,11 +928,6 @@ BEGIN
 	WHERE Persona.ESTADO_CIVIL.EstadoCivil_ID=@estadoID
 END;
 
-
-SELECT*
-FROM Persona.ESTADO_CIVIL
-
-/*################## Procedures de #####################*/ 
 GO
 CREATE PROCEDURE insertActividadEconomica
 (
@@ -975,10 +967,6 @@ BEGIN
 	SET Descripcion=@descripcion
 	WHERE ActividadEconomica_ID=@ActividadID
 END;
-
-
-
---Metodos para borrar persona
 
 
 GO
