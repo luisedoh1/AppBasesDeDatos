@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-    const form = document.querySelector("form");
+    const form = document.querySelector("form"),
     homeBtn = document.querySelector(".homeBtn");
 
     homeBtn.addEventListener("click", (event) => {

@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-    const registerBtn = document.querySelector(".registerBtn");
-    const showBtns = document.querySelectorAll(".showBtn"); // Changed to select all
-    const deleteBtns = document.querySelectorAll(".deleteBtn"); // Changed to select all
-    const editBtns = document.querySelectorAll(".editBtn"); // Changed to select all for consistency
+    const registerBtn = document.querySelector(".registerBtn"),
+    showBtns = document.querySelectorAll(".showBtn"),
+    deleteBtns = document.querySelectorAll(".deleteBtn"),
+    editBtns = document.querySelectorAll(".editBtn"),
+    homeBtn = document.querySelector(".homeBtn");
 
     registerBtn.addEventListener("click", () => {
         window.location.href = "./register";
@@ -30,6 +31,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 });
             }
         });
+    });
+
+    homeBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = '/';
     });
 
     editBtns.forEach(editBtn => {

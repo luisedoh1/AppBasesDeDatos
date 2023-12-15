@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const editForm = document.querySelector("form");
+    const editForm = document.querySelector("form"),
+    homeBtn = document.querySelector(".homeBtn");
 
     function checkInputsFilled(inputs) {
         return Array.from(inputs).every(input => input.value.trim() !== "");
@@ -37,6 +38,11 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 alert('Client updated successfully!');
             })
+        window.location.href = '/';
+    });
+
+    homeBtn.addEventListener("click", (event) => {
+        event.preventDefault();
         window.location.href = '/';
     });
 });

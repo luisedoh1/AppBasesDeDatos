@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const form = document.querySelector("form"),
         nextBtn = document.querySelector(".nextBtn"),
         submitBtn = document.querySelector(".submitBtn"),
-        backBtn = document.querySelector(".backBtn");
+        backBtn = document.querySelector(".backBtn"),
         homeBtn = document.querySelector(".homeBtn");
 
     let registrationCompleted = false;
