@@ -27,8 +27,8 @@ CREATE TABLE Tipo.TIPO_PERSONA --Tipo PERSONA (JURIDICA)(FISICA)(PYME)
 
 
 INSERT INTO Tipo.TIPO_PERSONA(Nombre_Tipo_Persona)
-VALUES (N'Jurídica'),
-	   (N'Física'),
+VALUES (N'Jurï¿½dica'),
+	   (N'Fï¿½sica'),
 	   (N'PYME');
 
 CREATE TABLE Persona.GENERO
@@ -54,9 +54,9 @@ CREATE TABLE Persona.PROFESION
 INSERT INTO Persona.PROFESION (Descripcion)
 VALUES
     ('Ingeniero de Software'),
-    ('Médico'),
+    ('Mï¿½dico'),
     ('Abogado'),
-    ('Diseñador Gráfico'),
+    ('Diseï¿½ador Grï¿½fico'),
     ('Contador'),
     ('Profesor'),
     ('Arquitecto'),
@@ -102,21 +102,21 @@ CREATE TABLE Persona.NIVEL_ACADEMICO_MAX
 
 -- Insertar datos en la tabla Persona.NIVEL_ACADEMICO_MAX
 INSERT INTO Persona.NIVEL_ACADEMICO_MAX (Nivel_ProfesionID, Descripcion) VALUES
-(1, 'Licenciatura en Ingeniería Civil - Junior'),
-(1, 'Licenciatura en Ingeniería Civil - Middle'),
-(1, 'Licenciatura en Ingeniería Civil - Senior'),
-(2, 'Maestría en Ciencias de la Computación - Interno'),
-(2, 'Maestría en Ciencias de la Computación - Residente'),
-(2, 'Maestría en Ciencias de la Computación - Jefe'),
+(1, 'Licenciatura en Ingenierï¿½a Civil - Junior'),
+(1, 'Licenciatura en Ingenierï¿½a Civil - Middle'),
+(1, 'Licenciatura en Ingenierï¿½a Civil - Senior'),
+(2, 'Maestrï¿½a en Ciencias de la Computaciï¿½n - Interno'),
+(2, 'Maestrï¿½a en Ciencias de la Computaciï¿½n - Residente'),
+(2, 'Maestrï¿½a en Ciencias de la Computaciï¿½n - Jefe'),
 (3, 'Doctorado en Medicina - Interno'),
 (3, 'Doctorado en Medicina - Residente'),
 (3, 'Doctorado en Medicina - Jefe'),
-(4, 'Licenciatura en Administración de Empresas - Asociado'),
-(4, 'Licenciatura en Administración de Empresas - Asociado Senior'),
-(4, 'Licenciatura en Administración de Empresas - Socio Gerente'),
-(4, 'Licenciatura en Administración de Empresas - Principiante'),
-(4, 'Licenciatura en Administración de Empresas - Senior'),
-(4, 'Licenciatura en Administración de Empresas - Director');
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Asociado'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Asociado Senior'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Socio Gerente'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Principiante'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Senior'),
+(4, 'Licenciatura en Administraciï¿½n de Empresas - Director');
 
 CREATE TABLE Persona.ACTIVIDAD_ECONOMICA
 (
@@ -127,16 +127,16 @@ CREATE TABLE Persona.ACTIVIDAD_ECONOMICA
 
 INSERT INTO Persona.ACTIVIDAD_ECONOMICA (Descripcion)
 VALUES
-    ('Desarrollo de software y servicios informáticos'),
-    ('Consultoría empresarial'),
-    ('Restaurante o cafetería'),
-    ('Venta al por menor de productos electrónicos'),
-    ('Servicios de contabilidad y asesoría fiscal'),
-    ('Construcción y obras civiles'),
-    ('Servicios de diseño gráfico y publicidad'),
-    ('Consultoría en recursos humanos'),
+    ('Desarrollo de software y servicios informï¿½ticos'),
+    ('Consultorï¿½a empresarial'),
+    ('Restaurante o cafeterï¿½a'),
+    ('Venta al por menor de productos electrï¿½nicos'),
+    ('Servicios de contabilidad y asesorï¿½a fiscal'),
+    ('Construcciï¿½n y obras civiles'),
+    ('Servicios de diseï¿½o grï¿½fico y publicidad'),
+    ('Consultorï¿½a en recursos humanos'),
     ('Venta al por mayor de alimentos y bebidas'),
-    ('Servicios de transporte y logística');
+    ('Servicios de transporte y logï¿½stica');
 
 CREATE TABLE Persona.PERSONA 
 (
@@ -177,16 +177,16 @@ INSERT INTO Persona.PERSONA (
     Estado_Vivo,
     Fecha_Defuncion
 ) VALUES
-('Juan', 'Carlos', 'Gómez', 'Pérez', '1990-05-15', 'Ciudad de México', 2, 1, 1, 3, 5, 1, NULL),
-('María', 'Isabel', 'Martínez', 'López', '1985-08-22', 'Guadalajara', 1, 2, 2, 2, 8, 1, NULL),
-('Pedro', NULL, 'Ramírez', 'Hernández', '1978-12-10', 'Monterrey', 3, 1, 1, 4, 7, 1, NULL),
-('Ana', 'Luisa', 'Díaz', 'Gutiérrez', '1995-04-03', 'Puebla', 0, 2, 2, 1, 10, 1, NULL),
-('Luis', 'Alberto', 'Hernández', 'Rodríguez', '1982-06-18', 'Tijuana', 1, 1, 1, 6, 2, 1, NULL),
-('Elena', 'Beatriz', 'Torres', 'Sánchez', '1998-09-27', 'Veracruz', 2, 2, 2, 5, 9, 1, NULL),
-('Ricardo', NULL, 'García', 'Martínez', '1975-03-14', 'Cancún', 4, 1, 1, 2, 4, 1, NULL),
+('Juan', 'Carlos', 'Gï¿½mez', 'Pï¿½rez', '1990-05-15', 'Ciudad de Mï¿½xico', 2, 1, 1, 3, 5, 1, NULL),
+('Marï¿½a', 'Isabel', 'Martï¿½nez', 'Lï¿½pez', '1985-08-22', 'Guadalajara', 1, 2, 2, 2, 8, 1, NULL),
+('Pedro', NULL, 'Ramï¿½rez', 'Hernï¿½ndez', '1978-12-10', 'Monterrey', 3, 1, 1, 4, 7, 1, NULL),
+('Ana', 'Luisa', 'Dï¿½az', 'Gutiï¿½rrez', '1995-04-03', 'Puebla', 0, 2, 2, 1, 10, 1, NULL),
+('Luis', 'Alberto', 'Hernï¿½ndez', 'Rodrï¿½guez', '1982-06-18', 'Tijuana', 1, 1, 1, 6, 2, 1, NULL),
+('Elena', 'Beatriz', 'Torres', 'Sï¿½nchez', '1998-09-27', 'Veracruz', 2, 2, 2, 5, 9, 1, NULL),
+('Ricardo', NULL, 'Garcï¿½a', 'Martï¿½nez', '1975-03-14', 'Cancï¿½n', 4, 1, 1, 2, 4, 1, NULL),
 ('Laura', 'Patricia', 'Flores', 'Ortega', '1991-11-08', 'Oaxaca', 1, 2, 2, 3, 6, 1, NULL),
-('Javier', NULL, 'Ruíz', 'Soto', '1987-07-02', 'Mérida', 2, 1, 1, 4, 8, 1, NULL),
-('Isabel', 'Cristina', 'Guzmán', 'Vargas', '1980-02-20', 'Acapulco', 3, 2, 2, 1, 5, 1, NULL);
+('Javier', NULL, 'Ruï¿½z', 'Soto', '1987-07-02', 'Mï¿½rida', 2, 1, 1, 4, 8, 1, NULL),
+('Isabel', 'Cristina', 'Guzmï¿½n', 'Vargas', '1980-02-20', 'Acapulco', 3, 2, 2, 1, 5, 1, NULL);
 
 
 CREATE TABLE Persona.CLIENTE
@@ -223,22 +223,22 @@ INSERT INTO GEO.PAIS (Nombre)
 VALUES
     ('Costa Rica')
 	,('Estados Unidos')
-	,('Canadá')
-	,('México')
+	,('Canadï¿½')
+	,('Mï¿½xico')
 	,('Brasil')
 	,('Argentina')
-	,('España')
+	,('Espaï¿½a')
 	,('Francia')
 	,('Alemania')
 	,('Italia')
 	,('China')
-	,('Japón')
+	,('Japï¿½n')
 	,('India')
 	,('Australia')
-	,('Sudáfrica')
+	,('Sudï¿½frica')
 	,('Egipto')
 	,('Rusia')
-	,('Turquía')
+	,('Turquï¿½a')
 	,('Reino Unido')
 	,('Corea del Sur');
 
@@ -251,7 +251,7 @@ CREATE TABLE Tipo.TIPO_DOCUMENTO
 
 INSERT INTO Tipo.TIPO_DOCUMENTO(Nombre_TipoDocumento)
 VALUES (N'Pasaporte'),
-	   (N'Cédula'),
+	   (N'Cï¿½dula'),
 	   (N'DIMEX')
 ;
 
@@ -323,13 +323,13 @@ INSERT INTO Contacto.MECANISMO_DE_CONTACTO (
     PersonaID,
     Tipo_ContactoID
 ) VALUES
-(123456789, 'Llamar después de las 5 PM', 1, 1, 2, 1, 1, 1),
-(987654321, 'Enviar un correo electrónico', 2, 2, 3, 0, 2, 2),
+(123456789, 'Llamar despuï¿½s de las 5 PM', 1, 1, 2, 1, 1, 1),
+(987654321, 'Enviar un correo electrï¿½nico', 2, 2, 3, 0, 2, 2),
 (555111333, 'SMS preferido', 3, 3, 4, 1, 3, 3),
 (777888999, 'Contactar solo en emergencias', 1, 1, 2, 0, 4, 1),
 (111222333, 'Disponible para videollamadas', 2, 2, 3, 1, 5, 2),
 (999888777, 'Llamar en horario laboral', 3, 3, 4, 0, 6, 3),
-(444555666, 'Correo electrónico secundario', 1, 1, 2, 1, 7, 1),
+(444555666, 'Correo electrï¿½nico secundario', 1, 1, 2, 1, 7, 1),
 (666777888, 'Llamada urgente', 2, 2, 3, 0, 8, 2),
 (222333444, 'SMS preferido', 3, 3, 4, 1, 9, 3),
 (888999000, 'Contacto preferido por videollamada', 1, 1, 2, 1, 10, 1);
@@ -453,7 +453,7 @@ VALUES   ('Salario')
 		,('Ventas')
 		,('Alquiler')
 		,('Prestamos')
-		,('Regalías')
+		,('Regalï¿½as')
 		,('Subsidios')
 		,('Premios')
 		,('Otros Ingresos')
@@ -477,14 +477,14 @@ CREATE TABLE Persona.INGRESOS
 INSERT INTO Persona.INGRESOS (MonedaID, Monto, Descripcion, TipoIngresoID, PersonaID) VALUES
 (1, 5000.00, 'Salario mensual', 1, 1),
 (2, 800.50, 'Ingresos por alquiler', 2, 2),
-(1, 12000.75, 'Bonificación anual', 3, 3),
+(1, 12000.75, 'Bonificaciï¿½n anual', 3, 3),
 (2, 3000.00, 'Ingresos por servicios profesionales', 1, 4),
 (1, 600.25, 'Ingresos por ventas', 2, 5),
-(2, 7000.50, 'Honorarios por consultoría', 3, 6),
+(2, 7000.50, 'Honorarios por consultorï¿½a', 3, 6),
 (1, 4500.75, 'Ingresos por freelance', 1, 7),
 (2, 900.00, 'Ingresos por alquiler de propiedad', 2, 8),
 (1, 5500.25, 'Salario mensual', 3, 9),
-(2, 1500.50, 'Ingresos por servicios técnicos', 1, 10);
+(2, 1500.50, 'Ingresos por servicios tï¿½cnicos', 1, 10);
 
 
 CREATE TABLE Tipo.TIPO_DIRECCION
@@ -498,7 +498,7 @@ INSERT INTO Tipo.TIPO_DIRECCION (Descripcion)
 VALUES
     ('Hogar'),
     ('Trabajo'),
-    ('Dirección Temporal'), 
+    ('Direcciï¿½n Temporal'), 
     ('Otro');
 
 CREATE TABLE GEO.DIVISION_GEO
@@ -511,7 +511,7 @@ CREATE TABLE GEO.DIVISION_GEO
 INSERT INTO GEO.DIVISION_GEO (Descripcion)
 VALUES
     ('Provincia'),
-    ('Cantón'),
+    ('Cantï¿½n'),
     ('Ciudad'),
     ('Distrito');
 
@@ -531,13 +531,13 @@ CREATE TABLE GEO.GEO
 
 -- Insertar datos en la tabla GEO.GEO
 INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
-('San José', 21, NULL, 1, 8), -- Provincia
+('San Josï¿½', 21, NULL, 1, 8), -- Provincia
 ('Heredia', 22, NULL, 1, 8), -- Provincia
 ('Guanacaste', 23, NULL, 1, 8), -- Provincia
-('San José', 24, 21, 2, 8), -- Cantón (pertenece a San José)
-('Heredia', 25, 22, 2, 8), -- Cantón (pertenece a Heredia)
-('Liberia', 26, 23, 2, 8), -- Cantón (pertenece a Guanacaste)
-('San Pedro', 27, 24, 3, 8), -- Ciudad (pertenece a San José)
+('San Josï¿½', 24, 21, 2, 8), -- Cantï¿½n (pertenece a San Josï¿½)
+('Heredia', 25, 22, 2, 8), -- Cantï¿½n (pertenece a Heredia)
+('Liberia', 26, 23, 2, 8), -- Cantï¿½n (pertenece a Guanacaste)
+('San Pedro', 27, 24, 3, 8), -- Ciudad (pertenece a San Josï¿½)
 ('Heredia Centro', 28, 25, 3, 8), -- Ciudad (pertenece a Heredia)
 ('Playas del Coco', 29, 26, 3, 8), -- Ciudad (pertenece a Liberia)
 ('Barrio Amon', 30, 27, 4, 8); -- Distrito (pertenece a San Pedro)
@@ -577,16 +577,16 @@ INSERT INTO Persona.DIRECCION (
     PersonaID,
     GeoID
 ) VALUES
-(1, 'Calle Principal 123', 'Apartamento 4B', 12345, 1, 54321, 1, 'Frente al parque', 1, 1, 1), -- Dirección 1
-(2, 'Avenida Central 456', NULL, 54321, 2, 98765, 0, 'Edificio Azul, Piso 8', 2, 2, 2), -- Dirección 2
-(3, 'Calle Sur 789', 'Casa 10', 67890, 3, 12345, 1, 'Esquina de la iglesia', 1, 3, 3), -- Dirección 3
-(1, 'Calle Este 321', 'Apartamento 5A', 54321, 1, 87654, 0, 'Frente al supermercado', 2, 4, 4), -- Dirección 4
-(2, 'Avenida Oeste 654', NULL, 98765, 2, 23456, 1, 'Edificio Rojo, Piso 12', 1, 5, 5), -- Dirección 5
-(3, 'Calle Norte 987', 'Casa 20', 23456, 3, 76543, 0, 'Al lado del parque', 2, 6, 6), -- Dirección 6
-(1, 'Avenida Principal 111', 'Apartamento 6C', 87654, 1, 34567, 1, 'Frente al cine', 1, 7, 7), -- Dirección 7
-(2, 'Calle Secundaria 222', NULL, 23456, 2, 45678, 0, 'Edificio Amarillo, Piso 5', 2, 8, 8), -- Dirección 8
-(3, 'Avenida Trasera 333', 'Casa 30', 76543, 3, 56789, 1, 'Detrás del mercado', 1, 9, 9), -- Dirección 9
-(1, 'Calle Escondida 444', 'Apartamento 7D', 34567, 1, 67890, 0, 'Frente a la escuela', 2, 10, 10); -- Dirección 10
+(1, 'Calle Principal 123', 'Apartamento 4B', 12345, 1, 54321, 1, 'Frente al parque', 1, 1, 1), -- Direcciï¿½n 1
+(2, 'Avenida Central 456', NULL, 54321, 2, 98765, 0, 'Edificio Azul, Piso 8', 2, 2, 2), -- Direcciï¿½n 2
+(3, 'Calle Sur 789', 'Casa 10', 67890, 3, 12345, 1, 'Esquina de la iglesia', 1, 3, 3), -- Direcciï¿½n 3
+(1, 'Calle Este 321', 'Apartamento 5A', 54321, 1, 87654, 0, 'Frente al supermercado', 2, 4, 4), -- Direcciï¿½n 4
+(2, 'Avenida Oeste 654', NULL, 98765, 2, 23456, 1, 'Edificio Rojo, Piso 12', 1, 5, 5), -- Direcciï¿½n 5
+(3, 'Calle Norte 987', 'Casa 20', 23456, 3, 76543, 0, 'Al lado del parque', 2, 6, 6), -- Direcciï¿½n 6
+(1, 'Avenida Principal 111', 'Apartamento 6C', 87654, 1, 34567, 1, 'Frente al cine', 1, 7, 7), -- Direcciï¿½n 7
+(2, 'Calle Secundaria 222', NULL, 23456, 2, 45678, 0, 'Edificio Amarillo, Piso 5', 2, 8, 8), -- Direcciï¿½n 8
+(3, 'Avenida Trasera 333', 'Casa 30', 76543, 3, 56789, 1, 'Detrï¿½s del mercado', 1, 9, 9), -- Direcciï¿½n 9
+(1, 'Calle Escondida 444', 'Apartamento 7D', 34567, 1, 67890, 0, 'Frente a la escuela', 2, 10, 10); -- Direcciï¿½n 10
 
 
 CREATE TABLE Persona.ESTADO_CIVIL
@@ -604,7 +604,7 @@ VALUES
 	,('Viudo/a')
 	,('Separado/a')
 	,('Comprometido/a')
-	,('Unión libre')
+	,('Uniï¿½n libre')
 	,('No especificado')
 	,('Otro');
 
@@ -642,8 +642,8 @@ CREATE TABLE Respuesta.PREGUNTA
 
 INSERT INTO Respuesta.PREGUNTA (Descripcion)
 VALUES
-    ('¿Posee vehículos?'),
-    ('¿Posee propiedades?');
+    ('ï¿½Posee vehï¿½culos?'),
+    ('ï¿½Posee propiedades?');
 
 CREATE TABLE Respuesta.RESPUESTA
 (
@@ -658,35 +658,35 @@ CREATE TABLE Respuesta.RESPUESTA
 
 -- Insertar datos en la tabla Respuesta.RESPUESTA
 INSERT INTO Respuesta.RESPUESTA (Respuesta, PersonaID, PreguntaID) VALUES
-('Sí', 1, 1), -- ¿Posee vehículos? - Persona 1
-('No', 1, 2), -- ¿Posee propiedades? - Persona 1
+('Sï¿½', 1, 1), -- ï¿½Posee vehï¿½culos? - Persona 1
+('No', 1, 2), -- ï¿½Posee propiedades? - Persona 1
 
-('Sí', 2, 1), -- ¿Posee vehículos? - Persona 2
-('Sí', 2, 2), -- ¿Posee propiedades? - Persona 2
+('Sï¿½', 2, 1), -- ï¿½Posee vehï¿½culos? - Persona 2
+('Sï¿½', 2, 2), -- ï¿½Posee propiedades? - Persona 2
 
-('No', 3, 1), -- ¿Posee vehículos? - Persona 3
-('Sí', 3, 2), -- ¿Posee propiedades? - Persona 3
+('No', 3, 1), -- ï¿½Posee vehï¿½culos? - Persona 3
+('Sï¿½', 3, 2), -- ï¿½Posee propiedades? - Persona 3
 
-('Sí', 4, 1), -- ¿Posee vehículos? - Persona 4
-('No', 4, 2), -- ¿Posee propiedades? - Persona 4
+('Sï¿½', 4, 1), -- ï¿½Posee vehï¿½culos? - Persona 4
+('No', 4, 2), -- ï¿½Posee propiedades? - Persona 4
 
-('No', 5, 1), -- ¿Posee vehículos? - Persona 5
-('No', 5, 2), -- ¿Posee propiedades? - Persona 5
+('No', 5, 1), -- ï¿½Posee vehï¿½culos? - Persona 5
+('No', 5, 2), -- ï¿½Posee propiedades? - Persona 5
 
-('Sí', 6, 1), -- ¿Posee vehículos? - Persona 6
-('Sí', 6, 2), -- ¿Posee propiedades? - Persona 6
+('Sï¿½', 6, 1), -- ï¿½Posee vehï¿½culos? - Persona 6
+('Sï¿½', 6, 2), -- ï¿½Posee propiedades? - Persona 6
 
-('No', 7, 1), -- ¿Posee vehículos? - Persona 7
-('Sí', 7, 2), -- ¿Posee propiedades? - Persona 7
+('No', 7, 1), -- ï¿½Posee vehï¿½culos? - Persona 7
+('Sï¿½', 7, 2), -- ï¿½Posee propiedades? - Persona 7
 
-('Sí', 8, 1), -- ¿Posee vehículos? - Persona 8
-('No', 8, 2), -- ¿Posee propiedades? - Persona 8
+('Sï¿½', 8, 1), -- ï¿½Posee vehï¿½culos? - Persona 8
+('No', 8, 2), -- ï¿½Posee propiedades? - Persona 8
 
-('No', 9, 1), -- ¿Posee vehículos? - Persona 9
-('Sí', 9, 2), -- ¿Posee propiedades? - Persona 9
+('No', 9, 1), -- ï¿½Posee vehï¿½culos? - Persona 9
+('Sï¿½', 9, 2), -- ï¿½Posee propiedades? - Persona 9
 
-('Sí', 10, 1), -- ¿Posee vehículos? - Persona 10
-('Sí', 10, 2); -- ¿Posee propiedades? - Persona 10
+('Sï¿½', 10, 1), -- ï¿½Posee vehï¿½culos? - Persona 10
+('Sï¿½', 10, 2); -- ï¿½Posee propiedades? - Persona 10
 
 
 -- Esquema Homologacion --

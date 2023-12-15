@@ -14,7 +14,7 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../public"));
 
-const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost;Database=Base_Proyecto;Trusted_Connection=yes;`;
+const connectionString = `Driver={ODBC Driver 17 for SQL Server};Server=localhost\\SQLEXPRESS;Database=Base_Proyecto;Trusted_Connection=yes;`;
 
 const config = {
     connectionString: connectionString,
@@ -190,7 +190,7 @@ sql
             }
         }
 
-        app.post("/clients/:id/delete", async (req, res) => {
+        app.post("/clients/delete/:id", async (req, res) => {
             const personaID = req.params.id;
             let transaction;
 
@@ -214,15 +214,20 @@ sql
         });
 
         // This route should show a form to edit a client's data
-        app.get("/clients/:id/edit", async (req, res) => {
+        app.get("/clients/edit/:id", async (req, res) => {
             const personID = req.params.id;
             try {
                 const request = new sql.Request();
+                // Assume the profession table is called "Profesiones" and it contains "Profesion_ID" and "Descripcion".
                 const result = await request
                     .input("PersonaID", sql.Int, personID)
-                    .query("SELECT * FROM Persona.PERSONA WHERE PersonaID = @PersonaID");
+                    .query(`SELECT p.*, pr.Descripcion AS ProfesionDescripcion 
+                    FROM Persona.PERSONA p
+                    INNER JOIN Persona.PROFESION pr ON p.Profesion_ID = pr.Profesion_ID 
+                    WHERE p.PersonaID = @PersonaID`);
                 const client = result.recordset[0];
-                res.render("edit-client", {client});
+                // Pass the profession description to the client-side
+                res.render("edit-client", { client });
             } catch (error) {
                 console.error("Failed to fetch client for editing:", error);
                 res
@@ -231,7 +236,8 @@ sql
             }
         });
 
-        app.get("/clients/:id/edit-script.js", (req, res) => {
+
+        app.get("/clients/edit-script.js/:id", (req, res) => {
             const personID = req.params.id;
 
             // Generate the file path for the client-specific JavaScript file
@@ -241,8 +247,22 @@ sql
             res.sendFile(scriptFilePath);
         });
 
+        app.get("/clients/style.css/:id", (req, res) => {
+            const personID = req.params.id;
+
+            // Optional: You can use `personID` to modify the CSS file
+            // or choose a specific CSS file based on the ID
+
+            // Generate the file path for the client-specific CSS file
+            const cssFilePath = path.join(__dirname, `../public/style.css`);
+
+            // Serve the client-specific CSS file
+            res.sendFile(cssFilePath);
+        });
+
+
         // Route to update client's information after editing
-        app.post("/clients/:id/update", async (req, res) => {
+        app.post("/clients/update/:id", async (req, res) => {
             const personID = req.params.id;
             const {
               primerNombre,
