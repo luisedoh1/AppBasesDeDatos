@@ -536,10 +536,18 @@ INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
 ('Guanacaste', 23, NULL, 1, 8);
 
 INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
-('San José', 24, 21, 2, 8), -- Cantón (pertenece a San José)
-('Heredia', 25, 22, 2, 8), -- Cantón (pertenece a Heredia)
-('Liberia', 26, 23, 2, 8), -- Cantón (pertenece a Guanacaste)
-('San Pedro', 27, 24, 3, 8);-- Ciudad (pertenece a San José)
+('San José', 24, 1, 2, 8), -- Cantón (pertenece a San José)
+('Heredia', 25, 2, 2, 8), -- Cantón (pertenece a Heredia)
+('Liberia', 26, 3, 2, 8);
+
+INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
+('San Pedro', 27, 1, 3, 8);
+
+INSERT INTO GEO.GEO (Nombre, DireccionID, Sup_GeoID, Tipo_GeoID, PaisID) VALUES
+('Barva', 27, 13, 3, 8);-- Ciudad (pertenece a San José)
+
+
+
 
 
 

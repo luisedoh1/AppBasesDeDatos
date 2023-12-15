@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     showBtns.forEach(showBtn => {
         showBtn.addEventListener("click", (event) => {
             const clientId = showBtn.getAttribute('data-client-id');
-            window.location.href = `./clients/${clientId}`;
+            window.location.href = `./clients/update/${clientId}`;
         });
     });
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         deleteBtn.addEventListener("click", (event) => {
             const clientId = deleteBtn.getAttribute('data-client-id');
             if (confirm('Are you sure you want to delete this client?')) {
-                fetch(`/clients/${clientId}/delete`, {
+                fetch(`/clients/delete/${clientId}`, {
                     method: 'POST'
                 }).then(response => {
                     if (response.ok) {
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     editBtns.forEach(editBtn => {
         editBtn.addEventListener("click", () => {
             const clientId = editBtn.getAttribute('data-client-id');
-            window.location.href = `/clients/${clientId}/edit`;
+            window.location.href = `/clients/edit/${clientId}`;
         });
     });
 });

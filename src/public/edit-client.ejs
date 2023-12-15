@@ -1,84 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Client</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/clients/style.css/<%= client.PersonaID %>">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
-
 <body>
-    <div class="header">
-        <h1>Administracion</h1>
-        <button class="homeBtn" type="button">
-            <i class="uil-home"></i>
-            <span class="btnText">Home</span>
-        </button>
-    </div>
-    <div class="container">
-        <h1>Edit Client</h1>
-        <form action="/clients/<%= client.PersonaID %>/update" method="post">
-            <div class="form first">
+<div class="header">
+    <h1>Administracion</h1>
+    <button class="homeBtn" type="button">
+        <i class="uil-home"></i>
+        <span class="btnText">Home</span>
+    </button>
+</div>
+<div class="container">
+    <h1>Edit Client</h1>
+    <form action="/clients/update/<%= client.PersonaID %>" method="post">
+        <div class="form first">
+            <% ['Primer_Nombre', 'Segundo_Nombre', 'Primer_Apellido', 'Segundo_Apellido'].forEach(field => { %>
                 <div class="form-group">
-                    <label for="primerNombre">Primer Nombre:</label>
-                    <input type="text" id="primerNombre" name="primerNombre" value="<%= client.Primer_Nombre %>"
-                        required>
+                    <label for="<%= field %>"><%= field.replace(/([A-Z])/g, ' $1').replace(/^./, function (str) {
+                            return str.toUpperCase();
+                        }) + ':' %></label>
+                    <input type="text" id="<%= field %>" name="<%= field %>"
+                           value="<%= client[field.replace(/([a-z])([A-Z])/g, '$1_$2')] %>" required>
                 </div>
-                <div class="form-group">
-                    <label for="segundoNombre">Segundo Nombre:</label>
-                    <input type="text" id="segundoNombre" name="segundoNombre" value="<%= client.Segundo_Nombre %>"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="primerApellido">Primer Apellido:</label>
-                    <input type="text" id="primerApellido" name="primerApellido" value="<%= client.Primer_Apellido %>"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="segundoApellido">Segundo Apellido:</label>
-                    <input type="text" id="segundoApellido" name="segundoApellido" value="<%= client.Segundo_Apellido %>"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="fechaNacimiento">Date of Birth:</label>
-                    <input type="date" id="fechaNacimiento" name="fechaNacimiento"
-                        value="<%= client.fechaNacimiento ? client.fechaNacimiento.toISOString().split('T')[0] : ''%>"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="genero">Genero:</label>
-                    <select id="genero" name="genero" required>
-                        <option value="1" <%=client.GeneroID==='1' ? 'selected' : '' %>>Male</option>
-                        <option value="2" <%=client.GeneroID==='2' ? 'selected' : '' %>>Female</option>
-                        <option value="3" <%=client.GeneroID==='3' ? 'selected' : '' %>>Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="ocupacion">Occupation:</label>
-                    <input type="text" id="ocupacion" name="ocupacion" value="<%= client.Ocupacion %>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="tipoPersona">Person Type:</label>
-                    <select id="tipoPersona" name="tipoPersona" required>
-                        <option value="1" <%=client.Tipo_PersonaID==='1' ? 'selected' : '' %>>Juridica</option>
-                        <option value="2" <%=client.Tipo_PersonaID==='2' ? 'selected' : '' %>>Fisica</option>
-                        <option value="3" <%=client.Tipo_PersonaID==='3' ? 'selected' : '' %>>PYME</option>
-                    </select>
-                </div>
-
-                <button class="submitBtn" type="submit">
-                    <span class="btnText">Submit</span>
-                    <i class="uil uil-navigator"></i>
-                </button>
+            <% }); %>
+            <div class="form-group">
+                <label for="profesion">Profesion:</label>
+                <input type="text" id="profesion" name="profesion" value="<%= client.ProfesionDescripcion %>" required>
             </div>
-        </form>
-    </div>
-    <script src="/clients/<%= client.PersonaID %>/edit-script.js"></script>
+            <div class="form-group">
+                <label for="fechaNacimiento">Date of Birth:</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento"
+                       value="<%= client.Fecha_Nacimiento ? client.Fecha_Nacimiento.toISOString().split('T')[0] : '' %>"
+                       required>
+            </div>
+            <div class="form-group">
+                <label for="genero">Genero:</label>
+                <select id="genero" name="genero" required>
+                    <% ['Male', 'Female', 'Other'].forEach((gender, index) => { %>
+                        <option value="<%= index + 1 %>" <%= client.GeneroID === String(index + 1) ? 'selected' : '' %>><%= gender %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipoPersona">Person Type:</label>
+                <select id="tipoPersona" name="tipoPersona" required>
+                    <% ['Juridica', 'Fisica', 'PYME'].forEach((type, index) => { %>
+                        <option value="<%= index + 1 %>" <%= client.Tipo_PersonaID === String(index + 1) ? 'selected' : '' %>><%= type %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <button class="submitBtn" type="submit">
+                <span class="btnText">Submit</span>
+                <i class="uil uil-navigator"></i>
+            </button>
+        </div>
+    </form>
+</div>
+<script src="/clients/edit-script.js/<%= client.PersonaID %>"></script>
 </body>
-
 </html>
