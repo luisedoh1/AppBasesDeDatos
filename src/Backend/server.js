@@ -291,7 +291,7 @@ sql
                     .input("Numero_Dependientes", sql.TinyInt, numeroDependientes) // changed from "NumeroDependientes" to "Numero_Dependientes"
                     .input("ActividadEconomica_ID", sql.TinyInt, actividadEcon)
                     .query(
-                        "UPDATE Person SET Primer_Nombre = @Primer_Nombre, Segundo_Nombre = @Segundo_Nombre,Primer_Apellido = @Primer_Apellido,Segundo_Apellido = @Segundo_Apellido, Fecha_Nacimiento = @Fecha_Nacimiento, Lugar_Nacimiento = @Lugar_Nacimiento, Profesion_ID = @Profesion_ID, GeneroID = @GeneroID, Tipo_PersonaID = @Tipo_PersonaID,Numero_Dependientes = @Numero_Dependientes, ActividadEconomica_ID = @ActividadEconomica_ID WHERE PersonID = @PersonID"
+                        "UPDATE Persona.PERSONA SET Primer_Nombre = @Primer_Nombre, Segundo_Nombre = @Segundo_Nombre,Primer_Apellido = @Primer_Apellido,Segundo_Apellido = @Segundo_Apellido, Fecha_Nacimiento = @Fecha_Nacimiento, Lugar_Nacimiento = @Lugar_Nacimiento, Profesion_ID = @Profesion_ID, GeneroID = @GeneroID, Tipo_PersonaID = @Tipo_PersonaID,Numero_Dependientes = @Numero_Dependientes, ActividadEconomica_ID = @ActividadEconomica_ID WHERE PersonaID = @PersonaID"
                     );
             } catch (error) {
                 console.error("Failed to update client:", error);
