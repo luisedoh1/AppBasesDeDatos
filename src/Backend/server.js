@@ -213,29 +213,27 @@ sql
             }
         });
 
-        // This route should show a form to edit a client's data
         app.get("/clients/edit/:id", async (req, res) => {
             const personID = req.params.id;
             try {
                 const request = new sql.Request();
-                // Assume the profession table is called "Profesiones" and it contains "Profesion_ID" and "Descripcion".
-                const result = await request
+                const clientResult = await request
                     .input("PersonaID", sql.Int, personID)
                     .query(`SELECT p.*, pr.Descripcion AS ProfesionDescripcion 
                     FROM Persona.PERSONA p
                     INNER JOIN Persona.PROFESION pr ON p.Profesion_ID = pr.Profesion_ID 
                     WHERE p.PersonaID = @PersonaID`);
-                const client = result.recordset[0];
-                // Pass the profession description to the client-side
-                res.render("edit-client", { client });
+                const client = clientResult.recordset[0];
+
+                const professionsResult = await request.query("SELECT Profesion_ID, Descripcion FROM Persona.PROFESION");
+                const professions = professionsResult.recordset;
+
+                res.render("edit-client", { client, professions });
             } catch (error) {
                 console.error("Failed to fetch client for editing:", error);
-                res
-                    .status(500)
-                    .send("An error occurred while fetching the client for editing.");
+                res.status(500).send("An error occurred while fetching the client for editing.");
             }
         });
-
 
         app.get("/clients/edit-script.js/:id", (req, res) => {
             const personID = req.params.id;
